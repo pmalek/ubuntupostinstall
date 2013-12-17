@@ -15,8 +15,8 @@ sudo dpkg -i chrome.deb
 sudo apt-get -f install -y
 rm -rf chrome.deb
 
-# install necessary apps
-sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar dropbox openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq -y
+# install necessary
+sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq -y
 
 # git config
 git config --global color.ui auto
