@@ -4,6 +4,8 @@ if [[ ! -d ~/bin ]]; then mkdir ~/bin; fi
 if [[ ! -d ~/programming/node ]]; then mkdir -p ~/programming/node; fi
 if [[ ! -d ~/programming/scripts ]]; then mkdir -p ~/programming/scripts; fi
 
+
+
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade 
@@ -18,6 +20,10 @@ rm -rf chrome.deb
 # install necessary
 sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq -y
 
+# network speed indicator
+cd ~/programming/scripts 
+wget http://webupd8.googlecode.com/files/sysmon_0.2.tar.gz && tar -xvf sysmon_0.2.tar.gz
+
 # git config
 git config --global color.ui auto
 
@@ -28,6 +34,7 @@ cd ~
 sudo chsh -s /bin/zsh
 sed -i 's/robbyrussell/af-magic/' ~/.zshrc
 sed -i 's/plugins=(git)/plugins=(git virtualenv node npm colorize)/' ~/.zshrc
+sed -i -r 's#(export\ PATH=")(.*)#\1~/bin:\2#' ~/.zshrc
 
 
 # vundle
@@ -46,7 +53,7 @@ sudo apt-get install tlp tlp-rdw smartmontools ethtool -y
 sudo tlp start
 
 # purge unnecessary packages
-sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks -y
+sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg -y
 
 ####################################################################
 # fix ubuntu privacy fixubuntu.com
