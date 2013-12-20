@@ -17,7 +17,7 @@ Bundle 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 Bundle 'scrooloose/syntastic'
-let g:syntastic_jslint_checkers=['jslint']
+let g:syntastic_jslint_checkers=['jshint']
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 Bundle 'altercation/vim-colors-solarized'
