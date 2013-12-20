@@ -29,6 +29,9 @@ sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar op
 # install necessary
 # vundle
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+cp ./.vimrc ~
+cp ./.tmux.conf ~
+cp ./.tmuxline.conf ~
 vim +BundleInstall +qall!
 
 # Lokaltog/powerline
