@@ -49,7 +49,9 @@ cd ~
 sudo chsh -s /bin/zsh
 sed -i 's/robbyrussell/af-magic/' ~/.zshrc
 sed -i 's/plugins=(git)/plugins=(git virtualenv node npm colorize)/' ~/.zshrc
-sed -i -r 's#(export\ PATH=")(.*)#\1~/bin:~/.local/bin:\2#' ~/.zshrc
+sed -i "s#\(export\ PATH=\"\)\(.*\)#\1/home/$(whoami)/bin:~/\.local/bin:\2#" ~/.zshrc
+# "
+# sed -i -r 's#(export\ PATH=")(.*)#\1~/bin:~/.local/bin:\2#' ~/.zshrc
 
 # install clementine
 sudo add-apt-repository ppa:me-davidsansome/clementine -y
