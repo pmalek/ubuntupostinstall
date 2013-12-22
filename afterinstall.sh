@@ -4,6 +4,15 @@ createdir(){
   if [[ ! -d "$1" ]]; then mkdir "$1"; fi
 }
 
+suretoinstall(){
+  read -p "Are you sure to install $1? " -n 1 -r
+  echo    # (optional) move to a new line
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+      sudo apt-get install $1 -y
+  fi
+}
+
 createdir ~/bin
 createdir ~/programming/node 
 createdir ~/programming/scripts/ 
@@ -13,26 +22,34 @@ sudo apt-get upgrade -y
 sudo apt-get dist-upgrade 
 
 # install chrome with dependencies
+read -p "Are you sure to install google-chrome? " -n 1 -r
+echo 
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
 cd /tmp
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb
-sudo dpkg -i chrome.deb
-sudo apt-get -f install -y
-rm -rf chrome.deb
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb
+  sudo dpkg -i chrome.deb
+  sudo apt-get -f install -y
+  rm -rf chrome.deb
+fi
 
 # install necessary
-sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge -y
+sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake -y
 
-# install necessary
-# install necessary
-# install necessary
-# install necessary
-# install necessary
+suretoinstall texlive 
+
 # vundle
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-cp ./.vimrc ~
-cp ./.tmux.conf ~
-cp ./.tmuxline.conf ~
-vim +BundleInstall +qall!
+read -p "Are you sure to install vundle to manage your vim plugins? " -n 1 -r
+echo 
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+cd /tmp
+  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+  cp ./.vimrc ~
+  cp ./.tmux.conf ~
+  cp ./.tmuxline.conf ~
+  vim +BundleInstall +qall!
+fi
 
 # Lokaltog/powerline
 # uninstall with : pip uninstall powerline
