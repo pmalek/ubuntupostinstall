@@ -36,8 +36,6 @@ fi
 # install necessary
 sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake -y
 
-suretoinstall texlive 
-
 # vundle
 read -p "Are you sure to install vundle to manage your vim plugins? " -n 1 -r
 echo 

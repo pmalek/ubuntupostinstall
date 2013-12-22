@@ -1,4 +1,4 @@
-set nocompatible               " be iMproved filetype off                   " required!
+set nocompatible               " be iMproved 
 
 "  -------------------------------------
 " --------------- VUNDLE ----------------
@@ -16,19 +16,20 @@ Bundle 'gmarik/vundle'
 Bundle 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
+let g:Powerline_symbols = 'fancy'
 Bundle 'scrooloose/syntastic'
 let g:syntastic_jslint_checkers=['jshint']
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-surround'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'elzr/vim-json'
 Bundle 'HTML-AutoCloseTag'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'scrooloose/nerdtree'
 Bundle 'edkolev/tmuxline.vim'
+Bundle 'tpope/vim-surround'
 
 "Bundle 'gregsexton/MatchTag'
 "Bundle 'airblade/vim-gitgutter'
@@ -45,10 +46,8 @@ Bundle 'xmledit'
 " --------------- VUNDLE ----------------
 "  -------------------------------------
 
-
 filetype plugin indent on     " required!
 syntax on
-
 
 let g:loaded_matchit = 1
 
@@ -86,19 +85,6 @@ autocmd FileType java %g/\/\*/normal! zf%
 autocmd FileType java setlocal foldmethod=syntax
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
-
-" autocomplete (' and (" for code
-" inoremap [' ['']<Left><Left>
-" inoremap [" [""]<Left><Left>
-" inoremap (' ('')<Left><Left>
-" inoremap (" ("")<Left><Left>
-
-let g:Powerline_symbols = 'fancy'
-
-"python powerline
-"set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
-
 
 " Always show statusline
 set laststatus=2
