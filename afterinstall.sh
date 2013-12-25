@@ -34,7 +34,7 @@ cd /tmp
 fi
 
 # install necessary
-sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake -y
+sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake xsel -y
 
 # vundle
 read -p "Are you sure to install vundle to manage your vim plugins? " -n 1 -r
@@ -66,9 +66,11 @@ wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master
 cd ~
 sudo chsh -s /bin/zsh
 sed -i 's/robbyrussell/af-magic/' ~/.zshrc
-sed -i 's/plugins=(git)/plugins=(git virtualenv node npm colorize)/' ~/.zshrc
+sed -i 's/plugins=(git)/plugins=(git virtualenv node npm copyfile copydir)/' ~/.zshrc
 sed -i "s#\(export\ PATH=\"\)\(.*\)#\1/home/$(whoami)/bin:~/\.local/bin:\2#" ~/.zshrc
 # "
+echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
+echo "alias pbpaste='xsel --clipboard --output'" >> ~/.zshrc
 # sed -i -r 's#(export\ PATH=")(.*)#\1~/bin:~/.local/bin:\2#' ~/.zshrc
 
 # install clementine
@@ -84,7 +86,7 @@ sudo apt-get install tlp tlp-rdw smartmontools ethtool -y
 sudo tlp start
 
 # purge unnecessary packages
-sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unit-lens-music -y
+sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unit-lens-music unity-scope-tomboy unity-scope-openclipart unity-scope-musique unity-scope-colourlovers unity-scope-colourlovers -y
 
 ####################################################################
 # fix ubuntu privacy fixubuntu.com
