@@ -59,6 +59,9 @@ fi
 cd ~/programming/scripts 
 wget http://webupd8.googlecode.com/files/sysmon_0.2.tar.gz && tar -xvf sysmon_0.2.tar.gz
 
+# copy indicator-multiload config
+sudo cp $current_dir/preferences.ui /usr/share/indicator-multiload/preferences.ui
+
 # git config
 git config --global color.ui auto
 
