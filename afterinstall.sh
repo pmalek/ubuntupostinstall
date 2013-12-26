@@ -13,16 +13,22 @@ suretoinstall(){
   fi
 }
 
+current_dir=`pwd`
+
 createdir ~/bin
 createdir ~/programming/node 
 createdir ~/programming/scripts/ 
 
 sudo apt-get update
+# purge unnecessary packages
+sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unity-scope-tomboy unity-scope-openclipart unity-scope-musique unity-scope-colourlovers gnome-orca -y
+# install necessary
+sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake xsel -y
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade 
 
 # install chrome with dependencies
-read -p "Are you sure to install google-chrome? " -n 1 -r
+read -p "\nAre you sure to install google-chrome? " -n 1 -r
 echo 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -33,9 +39,6 @@ cd /tmp
   rm -rf chrome.deb
 fi
 
-# install necessary
-sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake xsel -y
-
 # vundle
 read -p "Are you sure to install vundle to manage your vim plugins? " -n 1 -r
 echo 
@@ -43,9 +46,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
 cd /tmp
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-  cp ./.vimrc ~
-  cp ./.tmux.conf ~
-  cp ./.tmuxline.conf ~
+  cp $current_dir/.vimrc ~
+  cp $current_dir/.tmux.conf ~
+  cp $current_dir/.tmuxline.conf ~
   vim +BundleInstall +qall!
 fi
 
@@ -83,9 +86,6 @@ sudo apt-get install clementine -y
 sudo apt-get install nvidia-331 -y
 sudo apt-get install tlp tlp-rdw smartmontools ethtool -y
 sudo tlp start
-
-# purge unnecessary packages
-sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unity-scope-tomboy unity-scope-openclipart unity-scope-musique unity-scope-colourlovers -y
 
 ####################################################################
 # fix ubuntu privacy fixubuntu.com
