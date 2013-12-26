@@ -1,12 +1,21 @@
 #!/bin/bash
 
+# Colors
+ESC_SEQ="\x1b["
+COL_RESET=$ESC_SEQ"39;49;00m"
+COL_RED=$ESC_SEQ"31;01m"
+COL_GREEN=$ESC_SEQ"32;01m"
+COL_YELLOW=$ESC_SEQ"33;01m"
+COL_BLUE=$ESC_SEQ"34;01m"
+COL_MAGENTA=$ESC_SEQ"35;01m"
+COL_CYAN=$ESC_SEQ"36;01m"
+
 createdir(){
   if [[ ! -d "$1" ]]; then mkdir -p "$1"; fi
 }
 
 suretoinstall(){
-  read -p "Are you sure to install $1 ('y' to install)? " -n 1 -r
-  echo    # (optional) move to a new line
+  echo -e "\n$COL_YELLOW " && read -p "Are you sure to install $1 ('y' to install)? " -n 1 -r ; echo -e "\n$COL_RESET"
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
       sudo apt-get install $1 -y
@@ -28,8 +37,7 @@ sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar op
 sudo apt-get upgrade -y
 
 # install chrome with dependencies
-read -p "\nAre you sure to install google-chrome? " -n 1 -r
-echo 
+echo -e "$COL_YELLOW" && read -p "Are you sure to install google-chrome? " -n 1 -r ; echo -e "$COL_RESET"
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   cd /tmp
@@ -40,8 +48,7 @@ then
 fi
 
 # vundle
-read -p "Are you sure to install vundle to manage your vim plugins? " -n 1 -r
-echo 
+echo -e "\n$COL_YELLOW" && read -p "Are you sure to install vundle to manage your vim plugins? " -n 1 -r ; echo -e "\n$COL_RESET"
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -69,26 +76,26 @@ git config --global color.ui auto
 cd /tmp
 wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh
 cd ~
-sudo chsh -s /bin/zsh
+chsh -s /bin/zsh
 sed -i 's@robbyrussell@af-magic@' ~/.zshrc
 sed -i 's@plugins=(git)@plugins=(git virtualenv node npm copyfile copydir)@' ~/.zshrc
 sed -i "s@\(export\ PATH=\"\)\(.*\)@\1/home/$(whoami)/bin:~/\.local/bin:\2@" ~/.zshrc
 sed -i "s@PROMPT='$(virtualenv_prompt_info)'@RPROMPT='$(virtualenv_prompt_info)'@" ~/.oh-my-zsh/themes/af-magic.zsh-theme
 echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
 echo "alias pbpaste='xsel --clipboard --output'" >> ~/.zshrc
+
+# Powerline fonts for gnome terminal
 cd ~/.fonts/ && wget https://github.com/Lokaltog/powerline-fonts/archive/master.zip && unzip master.zip 
 mv powerline-fonts-master/* . && rm -rf master.zip powerline-fonts-master
 fc-cache -vf ~/.fonts
 gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Ubuntu Mono derivative Powerline 11"
 
-read -p "\nDo you want to set tmux as your default terminal command? (y to confirm) " -n 1 -r
-echo 
+echo -e "\n$COL_YELLOW" && read -p "Do you want to set tmux as your default terminal command? (y to confirm) " -n 1 -r ; echo -e "\n$COL_RESET"
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_custom_command --type bool true
   gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_custom_command --type string "tmux -2"
 fi
-
 
 # install clementine
 sudo add-apt-repository ppa:me-davidsansome/clementine -y
@@ -109,7 +116,6 @@ V=`/usr/bin/lsb_release -rs`
  
 # The privacy problems started with 12.10, so earlier versions should do nothing
 if [ $V \< 12.10 ]; then
-  echo ""
   echo "\nGood news! Your version of Ubuntu doesn't invade your privacy.\n"
 else
   # Turn off "Remote Search", so search terms in Dash don't get sent to the internet
@@ -132,9 +138,7 @@ else
   if ! grep -q productsearch.ubuntu.com /etc/hosts; then
     echo -e "\n127.0.0.1 productsearch.ubuntu.com" | sudo tee -a /etc/hosts >/dev/null
   fi
- 
-  echo ""
-  echo "All done. Enjoy your privacy."
+  echo -e "\n $COL_YELLOW All done. Enjoy your privacy. $COL_RESET"
 fi
 ################################################################
 
@@ -156,7 +160,4 @@ sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
 
-echo ""
-echo ""
-echo "Configuration complete :). Enjoy!"
-
+echo -e "\n $COL_YELLOW Configuration complete :). Enjoy! $COL_RESET"
