@@ -80,7 +80,7 @@ chsh -s /bin/zsh
 sed -i 's@robbyrussell@af-magic@' ~/.zshrc
 sed -i 's@plugins=(git)@plugins=(git virtualenv node npm copyfile copydir)@' ~/.zshrc
 sed -i "s@\(export\ PATH=\"\)\(.*\)@\1/home/$(whoami)/bin:~/\.local/bin:\2@" ~/.zshrc
-sed -i "s@PROMPT='$(virtualenv_prompt_info)'@RPROMPT='$(virtualenv_prompt_info)'@" ~/.oh-my-zsh/themes/af-magic.zsh-theme
+sed -i -r "s@PROMPT=(.*virtualenv_)@RPROMPT=\1@" ~/.oh-my-zsh/themes/af-magic.zsh-theme
 echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
 echo "alias pbpaste='xsel --clipboard --output'" >> ~/.zshrc
 
