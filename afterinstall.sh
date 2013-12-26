@@ -89,12 +89,13 @@ cd ~/.fonts/ && wget https://github.com/Lokaltog/powerline-fonts/archive/master.
 mv powerline-fonts-master/* . && rm -rf master.zip powerline-fonts-master
 fc-cache -vf ~/.fonts
 gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Ubuntu Mono derivative Powerline 11"
+gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_system_font --type bool "false"
 
 echo -e "\n$COL_YELLOW" && read -p "Do you want to set tmux as your default terminal command? (y to confirm) " -n 1 -r ; echo -e "\n$COL_RESET"
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_custom_command --type bool true
-  gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_custom_command --type string "tmux -2"
+  gconftool-2 --set /apps/gnome-terminal/profiles/Default/custom_command --type string "tmux -2"
 fi
 
 # install clementine
