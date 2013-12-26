@@ -15,9 +15,10 @@ suretoinstall(){
 
 current_dir=`pwd`
 
-createdir ~/bin
-createdir ~/programming/node 
+createdir ~/bin/
+createdir ~/programming/node/
 createdir ~/programming/scripts/ 
+createdir ~/.fonts/
 
 sudo apt-get update
 # purge unnecessary packages
@@ -25,14 +26,13 @@ sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusic
 # install necessary
 sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake xsel -y
 sudo apt-get upgrade -y
-sudo apt-get dist-upgrade 
 
 # install chrome with dependencies
 read -p "\nAre you sure to install google-chrome? " -n 1 -r
 echo 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-cd /tmp
+  cd /tmp
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O chrome.deb
   sudo dpkg -i chrome.deb
   sudo apt-get -f install -y
@@ -44,7 +44,6 @@ read -p "Are you sure to install vundle to manage your vim plugins? " -n 1 -r
 echo 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-cd /tmp
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
   cp $current_dir/.vimrc ~
   cp $current_dir/.tmux.conf ~
@@ -73,7 +72,19 @@ sed -i 's/plugins=(git)/plugins=(git virtualenv node npm copyfile copydir)/' ~/.
 sed -i "s@\(export\ PATH=\"\)\(.*\)@\1/home/$(whoami)/bin:~/\.local/bin:\2@" ~/.zshrc
 echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
 echo "alias pbpaste='xsel --clipboard --output'" >> ~/.zshrc
-# sed -i -r 's#(export\ PATH=")(.*)#\1~/bin:~/.local/bin:\2#' ~/.zshrc
+cd ~/.fonts/ && wget https://github.com/Lokaltog/powerline-fonts/archive/master.zip && unzip master.zip 
+mv powerline-fonts-master/* . && rm -rf master.zip powerline-fonts-master
+fc-cache -vf ~/.fonts
+gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Ubuntu Mono derivative Powerline 11"
+
+read -p "\nDo you want to set tmux as your default terminal command? (y to confirm) " -n 1 -r
+echo 
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_custom_command --type bool true
+  gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_custom_command --type string "tmux -2"
+fi
+
 
 # install clementine
 sudo add-apt-repository ppa:me-davidsansome/clementine -y
