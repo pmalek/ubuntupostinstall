@@ -29,15 +29,29 @@ createdir ~/programming/node/
 createdir ~/programming/scripts/ 
 createdir ~/.fonts/
 
-sudo apt-get update
 # purge unnecessary packages
 sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unity-scope-openclipart unity-scope-musique unity-scope-colourlovers gnome-orca unity-scope-zotero unity-scope-tomboy unity-scope-texdoc transmission-common transmission-gtk unity-scope-video-remote totem -y
+
+# install clementine
+sudo add-apt-repository ppa:me-davidsansome/clementine -y
+# install tlp power management
+sudo add-apt-repository ppa:linrunner/tlp -y
+# install new nvidia drivers from xorg-edgers
+sudo add-apt-repository ppa:xorg-edgers/ppa -y
+
+sudo apt-get update
+
+sudo apt-get install clementine -y
+sudo apt-get install nvidia-331 -y
+sudo apt-get install tlp tlp-rdw smartmontools ethtool -y
+sudo tlp start
+
 # install necessary
 sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake xsel -y
 sudo apt-get upgrade -y
 
 # install chrome with dependencies
-echo -e "$COL_YELLOW" && read -p "Are you sure to install google-chrome? " -n 1 -r ; echo -e "$COL_RESET"
+echo -e "\n$COL_YELLOW" && read -p "Are you sure to install google-chrome? " -n 1 -r ; echo -e "$COL_RESET"
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   cd /tmp
@@ -48,7 +62,7 @@ then
 fi
 
 # vundle
-echo -e "\n$COL_YELLOW" && read -p "Are you sure to install vundle to manage your vim plugins? " -n 1 -r ; echo -e "\n$COL_RESET"
+echo -e "\n$COL_YELLOW" && read -p "Are you sure to install vundle to manage your vim plugins? " -n 1 -r ; echo -e "$COL_RESET"
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -72,7 +86,7 @@ sudo cp $current_dir/preferences.ui /usr/share/indicator-multiload/preferences.u
 # git config
 git config --global color.ui auto
 
-# oh-my-zsh
+# oh-my-zsh and zsh config
 cd /tmp
 wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh
 cd ~
@@ -91,24 +105,12 @@ fc-cache -vf ~/.fonts
 gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Ubuntu Mono derivative Powerline 11"
 gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_system_font --type bool "false"
 
-echo -e "\n$COL_YELLOW" && read -p "Do you want to set tmux as your default terminal command? (y to confirm) " -n 1 -r ; echo -e "\n$COL_RESET"
+echo -e "\n$COL_YELLOW" && read -p "Do you want to set tmux as your default terminal command? (y to confirm) " -n 1 -r ; echo -e "$COL_RESET"
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_custom_command --type bool true
   gconftool-2 --set /apps/gnome-terminal/profiles/Default/custom_command --type string "tmux -2"
 fi
-
-# install clementine
-sudo add-apt-repository ppa:me-davidsansome/clementine -y
-# install tlp power management
-sudo add-apt-repository ppa:linrunner/tlp -y
-# install new nvidia drivers from xorg-edgers
-sudo add-apt-repository ppa:xorg-edgers/ppa -y
-
-sudo apt-get install clementine -y
-sudo apt-get install nvidia-331 -y
-sudo apt-get install tlp tlp-rdw smartmontools ethtool -y
-sudo tlp start
 
 ####################################################################
 # fix ubuntu privacy fixubuntu.com
@@ -156,9 +158,5 @@ sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
 #sudo xhost +SI:localuser:lightdm
 #sudo su lightdm -s /bin/bash
 #gsettings set com.canonical.unity-greeter draw-grid false
-
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get dist-upgrade -y
 
 echo -e "\n $COL_YELLOW Configuration complete :). Enjoy! $COL_RESET"
