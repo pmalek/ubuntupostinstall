@@ -14,6 +14,14 @@ createdir(){
   if [[ ! -d "$1" ]]; then mkdir -p "$1"; fi
 }
 
+suretopurge(){
+  echo -e "\n$COL_YELLOW " && read -p "Are you sure to purge $1 ('y' to purge)? " -n 1 -r ; echo -e "\n$COL_RESET"
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+      sudo apt-get purge $1 -y
+  fi
+}
+
 suretoinstall(){
   echo -e "\n$COL_YELLOW " && read -p "Are you sure to install $1 ('y' to install)? " -n 1 -r ; echo -e "\n$COL_RESET"
   if [[ $REPLY =~ ^[Yy]$ ]]
@@ -30,7 +38,8 @@ createdir ~/programming/scripts/
 createdir ~/.fonts/
 
 # purge unnecessary packages
-sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unity-scope-openclipart unity-scope-musique unity-scope-colourlovers gnome-orca unity-scope-zotero unity-scope-tomboy unity-scope-texdoc transmission-common transmission-gtk unity-scope-video-remote totem -y
+sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unity-scope-openclipart unity-scope-musique unity-scope-colourlovers gnome-orca unity-scope-zotero unity-scope-tomboy unity-scope-texdoc transmission-common transmission-gtk unity-scope-video-remote totem account-plugin-twitter friends-twitter -y
+suretopurge empathy
 
 # install clementine
 sudo add-apt-repository ppa:me-davidsansome/clementine -y
