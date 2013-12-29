@@ -54,6 +54,7 @@ sudo apt-get install clementine -y
 sudo apt-get install nvidia-331 -y
 sudo apt-get install tlp tlp-rdw smartmontools ethtool -y
 sudo tlp start
+suretoinstall samba
 
 # install necessary
 sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake xsel -y
