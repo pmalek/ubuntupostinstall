@@ -47,12 +47,15 @@ sudo add-apt-repository ppa:me-davidsansome/clementine -y
 sudo add-apt-repository ppa:linrunner/tlp -y
 # install new nvidia drivers from xorg-edgers
 sudo add-apt-repository ppa:xorg-edgers/ppa -y
+# install java 7 oracle version from webupd8 PPA
+sudo add-apt-repository ppa:webupd8team/java -y
 
 sudo apt-get update
 
 sudo apt-get install clementine -y
 sudo apt-get install nvidia-331 -y
 sudo apt-get install tlp tlp-rdw smartmontools ethtool -y
+sudo apt-get install oracle-java7-installer -y
 sudo tlp start
 suretoinstall samba
 
