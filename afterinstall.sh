@@ -42,15 +42,15 @@ createdir ~/programming/scripts/
 createdir ~/.fonts/
 
 suretopurge empathy
+suretopurge shotwell-common
+suretopurge eog
+suretopurge thunderbird
 suretoinstall samba
+# gwenview instead of eog and shotwell for managing photos
+suretoinstall gwenview
 
 # purge unnecessary packages
-sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unity-scope-openclipart unity-scope-musique unity-scope-colourlovers gnome-orca unity-scope-zotero unity-scope-tomboy unity-scope-texdoc transmission-common transmission-gtk unity-scope-video-remote totem account-plugin-twitter friends-twitter $topurge -y
-
-sudo apt-get purge thunderbird eog shotwell shotwell-common landscape-client-ui-install gnome-control-center-signon checkbox-qt -y
-
-# gwenview instead of eog and shotwell for managing photos
-sudo apt-get install gwenview -y
+sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unity-scope-openclipart unity-scope-musique unity-scope-colourlovers gnome-orca unity-scope-zotero unity-scope-tomboy unity-scope-texdoc transmission-common transmission-gtk unity-scope-video-remote totem account-plugin-twitter friends-twitter landscape-client-ui-install $topurge -y
 
 # install clementine
 sudo add-apt-repository ppa:me-davidsansome/clementine -y
@@ -92,7 +92,9 @@ then
   cp $current_dir/.vimrc ~
   cp $current_dir/.tmux.conf ~
   cp $current_dir/.tmuxline.conf ~
+  sed -i 's/.*solarized.*/"\ &/g' ~/.vimrc
   vim +BundleInstall +qall!
+  sed -i 's/"\ \(.*solarized.*\)/\1/g' ~/.vimrc
 fi
 
 # Lokaltog/powerline
@@ -120,10 +122,9 @@ sed -i "s@\(export\ PATH=\"\)\(.*\)@\1/home/$(whoami)/bin:~/\.local/bin:\2@" ~/.
 sed -i -r "s@PROMPT=(.*virtualenv_)@RPROMPT=\1@" ~/.oh-my-zsh/themes/af-magic.zsh-theme
 echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
 echo "alias pbpaste='xsel --clipboard --output'" >> ~/.zshrc
-echo "alias ll='ls -lh" >> ~/.zshrc
+# echo "alias ll='ls -lh" >> ~/.zshrc
 echo "alias lt='ls -lhtr" >> ~/.zshrc
-echo "alias la='ls -lha" >> ~/.zshrc
-
+echo "alias la='ls -lhA" >> ~/.zshrc
 
 # Powerline fonts for gnome terminal
 cd ~/.fonts/ && wget https://github.com/Lokaltog/powerline-fonts/archive/master.zip && unzip master.zip 
