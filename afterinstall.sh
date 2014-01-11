@@ -10,36 +10,42 @@ COL_BLUE=$ESC_SEQ"34;01m"
 COL_MAGENTA=$ESC_SEQ"35;01m"
 COL_CYAN=$ESC_SEQ"36;01m"
 
+current_dir=`pwd`
+toinstall=""
+topurge=""
+
 createdir(){
   if [[ ! -d "$1" ]]; then mkdir -p "$1"; fi
 }
 
 suretopurge(){
-  echo -e "\n$COL_YELLOW " && read -p "Are you sure to purge $1 ('y' to purge)? " -n 1 -r ; echo -e "\n$COL_RESET"
+  echo -e "$COL_YELLOW " && read -p "Are you sure to purge $1 ('y' to purge)? " -n 1 -r ; echo -e "\n$COL_RESET"
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-      sudo apt-get purge $1 -y
+      $topurge="$topurge $1"
+      # sudo apt-get purge $1 -y
   fi
 }
 
 suretoinstall(){
-  echo -e "\n$COL_YELLOW " && read -p "Are you sure to install $1 ('y' to install)? " -n 1 -r ; echo -e "\n$COL_RESET"
+  echo -e "$COL_YELLOW " && read -p "Are you sure to install $1 ('y' to install)? " -n 1 -r ; echo -e "\n$COL_RESET"
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-      sudo apt-get install $1 -y
+      $toinstall="$toinstall $1"
+      # sudo apt-get install $1 -y
   fi
 }
-
-current_dir=`pwd`
 
 createdir ~/bin/
 createdir ~/programming/node/
 createdir ~/programming/scripts/ 
 createdir ~/.fonts/
 
-# purge unnecessary packages
-sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unity-scope-openclipart unity-scope-musique unity-scope-colourlovers gnome-orca unity-scope-zotero unity-scope-tomboy unity-scope-texdoc transmission-common transmission-gtk unity-scope-video-remote totem account-plugin-twitter friends-twitter -y
 suretopurge empathy
+suretoinstall samba
+
+# purge unnecessary packages
+sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unity-scope-openclipart unity-scope-musique unity-scope-colourlovers gnome-orca unity-scope-zotero unity-scope-tomboy unity-scope-texdoc transmission-common transmission-gtk unity-scope-video-remote totem account-plugin-twitter friends-twitter $topurge -y
 
 # install clementine
 sudo add-apt-repository ppa:me-davidsansome/clementine -y
@@ -57,10 +63,9 @@ sudo apt-get install clementine -y
 sudo apt-get install tlp tlp-rdw smartmontools ethtool -y
 sudo apt-get install oracle-java7-installer -y
 sudo tlp start
-suretoinstall samba
 
 # install necessary
-sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake xsel -y
+sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar openjdk-7-jre ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake xsel $toinstall -y
 sudo apt-get upgrade -y
 
 # install chrome with dependencies
@@ -144,10 +149,7 @@ else
   # If you're using a later version, disable remote scopes
   else
     gsettings set com.canonical.Unity.Lenses disabled-scopes \
-      "['more_suggestions-amazon.scope', 'more_suggestions-u1ms.scope',
-      'more_suggestions-populartracks.scope', 'music-musicstore.scope',
-      'more_suggestions-ebay.scope', 'more_suggestions-ubuntushop.scope',
-      'more_suggestions-skimlinks.scope']"
+      "['more_suggestions-amazon.scope', 'more_suggestions-u1ms.scope', 'more_suggestions-populartracks.scope', 'music-musicstore.scope', 'more_suggestions-ebay.scope', 'more_suggestions-ubuntushop.scope', 'more_suggestions-skimlinks.scope']"
   fi;
  
   # Block connections to Ubuntu's ad server, just in case
@@ -157,6 +159,9 @@ else
   echo -e "\n $COL_YELLOW All done. Enjoy your privacy. $COL_RESET"
 fi
 ################################################################
+
+# remove amazon from dash
+sudo rm -rf /usr/share/applications/ubuntu-amazon-default.desktop
 
 # disable overlay scrollbars
 gsettings set com.canonical.desktop.interface scrollbar-mode normal
