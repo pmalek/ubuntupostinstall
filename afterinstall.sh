@@ -102,6 +102,7 @@ then
   sed -i 's/.*solarized.*/"\ &/g' ~/.vimrc
   vim +BundleInstall +qall!
   sed -i 's/"\ \(.*solarized.*\)/\1/g' ~/.vimrc
+  ln -s ~/.vim/bundle/xmledit/ftplugin/xml.vim ~/.vim/bundle/xmledit/ftplugin/html.vim
 fi
 
 # Lokaltog/powerline
@@ -188,6 +189,9 @@ echo allow-guest=false | sudo tee -a /etc/lightdm/lightdm.conf.d/50-unity-greete
 
 # disable crash reports
 sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport 
+
+# check updates each 2 weeks
+dconf write /com/ubuntu/update-notifier/regular-auto-launch-interval 14
 
 # DOES NOT WORK ? 
 #sudo xhost +SI:localuser:lightdm

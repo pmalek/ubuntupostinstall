@@ -114,6 +114,7 @@ noremap % v%
 inoremap <C-e> <End>
 
 set updatetime=400
+noremap <Space> za
 
 map <C-n> :NERDTreeToggle<CR>
 "autocmd vimenter * NERDTree
