@@ -82,7 +82,7 @@ sudo apt-get install tlp tlp-rdw smartmontools ethtool -y
 sudo tlp start
 
 # install necessary
-sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake xsel $toinstall -y
+sudo apt-get install vim git unity-tweak-tool zsh indicator-multiload vlc rar ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra indicator-cpufreq libappindicator1 python-pip htop deluge colormake xsel synaptic $toinstall -y
 sudo apt-get upgrade -y
 
 # install chrome with dependencies
