@@ -48,6 +48,7 @@ suretopurge thunderbird
 suretoinstall samba
 # gwenview instead of eog and shotwell for managing photos
 suretoinstall gwenview
+suretoinstall gimp
 
 echo -e "$col_yellow " && read -p "Do you want to install Java Development Kit ('y' to install)? " -n 1 -r ; echo -e "$col_reset"
 if [[ $reply =~ ^[Yy]$ ]]
@@ -68,6 +69,10 @@ sudo add-apt-repository ppa:linrunner/tlp -y
 # sudo add-apt-repository ppa:xorg-edgers/ppa -y
 # add  webupd8 PPA for java installation
 sudo add-apt-repository ppa:webupd8team/java -y
+# vlc stable ppa
+sudo add-apt-repository ppa:djcj/vlc-stable -y
+# gimp updates yet not bleeding edge
+sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
 
 sudo apt-get update
 
