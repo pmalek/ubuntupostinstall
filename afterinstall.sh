@@ -73,6 +73,8 @@ sudo add-apt-repository ppa:webupd8team/java -y
 sudo add-apt-repository ppa:djcj/vlc-stable -y
 # gimp updates yet not bleeding edge
 sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
+# latest stable git release
+sudo add-apt-repository ppa:git-core/ppa -y
 
 sudo apt-get update
 
