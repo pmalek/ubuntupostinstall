@@ -137,6 +137,7 @@ sed -i "s@\(export\ PATH=\"\)\(.*\)@\1/home/$(whoami)/bin:~/\.local/bin:\2@" ~/.
 sed -i -r "s@PROMPT=(.*virtualenv_)@RPROMPT=\1@" ~/.oh-my-zsh/themes/af-magic.zsh-theme
 echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
 echo "alias pbpaste='xsel --clipboard --output'" >> ~/.zshrc
+echo "alias tmux='tmux -2'" >> ~/.zshrc
 # echo "alias ll='ls -lh" >> ~/.zshrc
 echo "alias lt='ls -lhtr" >> ~/.zshrc
 echo "alias la='ls -lhA" >> ~/.zshrc
