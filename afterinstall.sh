@@ -49,6 +49,12 @@ suretoinstall samba
 # gwenview instead of eog and shotwell for managing photos
 suretoinstall gwenview
 suretoinstall gimp
+suretoinstall clementine
+
+# Fixes Skype theme on 64 bit systems
+if [[ `uname -m` =~ .*64.* ]] ; then 
+  $toinstall="$toinstall gtk2-engines-murrine:i386"
+fi
 
 echo -e "$col_yellow " && read -p "Do you want to install Java Development Kit ('y' to install)? " -n 1 -r ; echo -e "$col_reset"
 if [[ $reply =~ ^[Yy]$ ]]
@@ -78,7 +84,6 @@ sudo add-apt-repository ppa:git-core/ppa -y
 
 sudo apt-get update
 
-sudo apt-get install clementine -y
 # sudo apt-get install nvidia-331 -y
 sudo apt-get install tlp tlp-rdw smartmontools ethtool -y
 sudo tlp start
