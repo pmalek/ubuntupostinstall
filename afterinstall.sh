@@ -137,7 +137,7 @@ wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master
 cd ~
 chsh -s /bin/zsh
 sed -i 's@robbyrussell@af-magic@' ~/.zshrc
-sed -i 's@plugins=(git)@plugins=(git virtualenv node npm copyfile copydir)@' ~/.zshrc
+sed -i 's@plugins=(git)@plugins=(git virtualenv node npm copyfile copydir sudo encode64 mvn nyan pip)@' ~/.zshrc
 sed -i "s@\(export\ PATH=\"\)\(.*\)@\1/home/$(whoami)/bin:~/\.local/bin:\2@" ~/.zshrc
 sed -i -r "s@PROMPT=(.*virtualenv_)@RPROMPT=\1@" ~/.oh-my-zsh/themes/af-magic.zsh-theme
 echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
