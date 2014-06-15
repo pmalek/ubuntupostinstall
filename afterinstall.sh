@@ -103,7 +103,9 @@ then
   rm -rf chrome.deb
 fi
 
-# vundle
+
+####################################################################
+############################ VUNDLE
 echo -e "$COL_YELLOW" && read -p "Are you sure to install vundle to manage your vim plugins? " -n 1 -r ; echo -e "$COL_RESET"
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -116,6 +118,8 @@ then
   sed -i 's/"\ \(.*solarized.*\)/\1/g' ~/.vimrc
   ln -s ~/.vim/bundle/xmledit/ftplugin/xml.vim ~/.vim/bundle/xmledit/ftplugin/html.vim
 fi
+####################################################################
+
 
 # Lokaltog/powerline
 # uninstall with : pip uninstall powerline
@@ -128,10 +132,18 @@ wget http://webupd8.googlecode.com/files/sysmon_0.2.tar.gz && tar -xvf sysmon_0.
 # copy indicator-multiload config
 sudo cp $current_dir/preferences.ui /usr/share/indicator-multiload/preferences.ui
 
-# git config
-git config --global color.ui auto
 
-# oh-my-zsh and zsh config
+####################################################################
+#################       BEGIN OF GIT CONFIG
+git config --global color.ui auto
+# install git extras https://github.com/visionmedia/git-extras
+(cd /tmp && git clone --depth 1 https://github.com/visionmedia/git-extras.git && cd git-extras && sudo make install)
+#################       END OF GIT CONFIG
+####################################################################
+
+
+####################################################################
+#################       BEGIN OF OH-MY-ZSH
 cd /tmp
 wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh
 cd ~
@@ -139,6 +151,7 @@ chsh -s /bin/zsh
 sed -i 's@robbyrussell@af-magic@' ~/.zshrc
 sed -i 's@plugins=(git)@plugins=(git virtualenv node npm copyfile copydir sudo encode64 mvn nyan pip)@' ~/.zshrc
 sed -i "s@\(export\ PATH=\"\)\(.*\)@\1/home/$(whoami)/bin:~/\.local/bin:\2@" ~/.zshrc
+# oh-my-zsh fix for afmagic theme
 sed -i -r "s@PROMPT=(.*virtualenv_)@RPROMPT=\1@" ~/.oh-my-zsh/themes/af-magic.zsh-theme
 echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
 echo "alias pbpaste='xsel --clipboard --output'" >> ~/.zshrc
@@ -146,8 +159,12 @@ echo "alias tmux='tmux -2'" >> ~/.zshrc
 # echo "alias ll='ls -lh" >> ~/.zshrc
 echo "alias lt='ls -lhtr" >> ~/.zshrc
 echo "alias la='ls -lhA" >> ~/.zshrc
+################         END OF OH-MY-ZSH
+####################################################################
 
-# Powerline fonts for gnome terminal
+
+####################################################################
+############### Powerline fonts for gnome terminal
 cd ~/.fonts/ && wget https://github.com/Lokaltog/powerline-fonts/archive/master.zip && unzip master.zip 
 mv powerline-fonts-master/* . && rm -rf master.zip powerline-fonts-master
 fc-cache -vf ~/.fonts
@@ -160,6 +177,8 @@ then
   gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_custom_command --type bool true
   gconftool-2 --set /apps/gnome-terminal/profiles/Default/custom_command --type string "tmux -2"
 fi
+####################################################################
+
 
 ####################################################################
 # fix ubuntu privacy fixubuntu.com
@@ -191,6 +210,7 @@ else
 fi
 ################################################################
 
+
 # remove amazon from dash
 sudo rm -rf /usr/share/applications/ubuntu-amazon-default.desktop
 
@@ -211,4 +231,4 @@ dconf write /com/ubuntu/update-notifier/regular-auto-launch-interval 14
 #sudo su lightdm -s /bin/bash
 #gsettings set com.canonical.unity-greeter draw-grid false
 
-echo -e "\n $COL_YELLOW Configuration complete :). Enjoy! $COL_RESET"
+echo -e "\n $COL_YELLOW Configuration complete :). Enjoy!\n $COL_RESET"
