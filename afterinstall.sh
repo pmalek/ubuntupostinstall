@@ -159,6 +159,7 @@ echo "alias tmux='tmux -2'" >> ~/.zshrc
 # echo "alias ll='ls -lh" >> ~/.zshrc
 echo "alias lt='ls -lhtr" >> ~/.zshrc
 echo "alias la='ls -lhA" >> ~/.zshrc
+cat "$current_dir/zshrc_methods" >> ~/.zshrc
 ################         END OF OH-MY-ZSH
 ####################################################################
 

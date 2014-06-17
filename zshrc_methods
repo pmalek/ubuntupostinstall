@@ -1,0 +1,20 @@
+
+# shows line count of all the files listed in argument list
+lines(){
+  foreach file in $*
+    num=`cat ${file} | wc -l`
+    printf "%20s has : %8u lines\n" "$file" $num
+  end
+}
+# shows line count of all the files listed in argument list
+# sorted by line count in descending order
+lines_sort(){
+  mylines=""
+  foreach file in $*
+    num=`cat ${file} | wc -l`
+    mylines="$mylines $(printf "%8u lines : %20s\n" $num "$file") \n"
+  end
+  mylines=`echo $mylines | sort -h`
+  echo $mylines
+}
+
