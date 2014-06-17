@@ -11,6 +11,7 @@ COL_MAGENTA=$ESC_SEQ"35;01m"
 COL_CYAN=$ESC_SEQ"36;01m"
 
 current_dir=`pwd`
+DIR="$( cd "$( dirname "$0"  )" && pwd )"
 toinstall=""
 topurge=""
 
@@ -110,9 +111,9 @@ echo -e "$COL_YELLOW" && read -p "Are you sure to install vundle to manage your 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-  cp $current_dir/.vimrc ~
-  cp $current_dir/.tmux.conf ~
-  cp $current_dir/.tmuxline.conf ~
+  cp $DIR/.vimrc ~
+  cp $DIR/.tmux.conf ~
+  cp $DIR/.tmuxline.conf ~
   sed -i 's/.*solarized.*/"\ &/g' ~/.vimrc
   vim +BundleInstall +qall!
   sed -i 's/"\ \(.*solarized.*\)/\1/g' ~/.vimrc
@@ -130,7 +131,7 @@ cd ~/programming/scripts
 wget http://webupd8.googlecode.com/files/sysmon_0.2.tar.gz && tar -xvf sysmon_0.2.tar.gz
 
 # copy indicator-multiload config
-sudo cp $current_dir/preferences.ui /usr/share/indicator-multiload/preferences.ui
+sudo cp $DIR/preferences.ui /usr/share/indicator-multiload/preferences.ui
 
 
 ####################################################################
@@ -159,7 +160,8 @@ echo "alias tmux='tmux -2'" >> ~/.zshrc
 # echo "alias ll='ls -lh" >> ~/.zshrc
 echo "alias lt='ls -lhtr" >> ~/.zshrc
 echo "alias la='ls -lhA" >> ~/.zshrc
-cat "$current_dir/zshrc_methods" >> ~/.zshrc
+# lines and lines_sort methods
+cat "$DIR/zshrc_methods" >> ~/.zshrc
 ################         END OF OH-MY-ZSH
 ####################################################################
 
@@ -232,4 +234,5 @@ dconf write /com/ubuntu/update-notifier/regular-auto-launch-interval 14
 #sudo su lightdm -s /bin/bash
 #gsettings set com.canonical.unity-greeter draw-grid false
 
+cd $current_dir
 echo -e "\n $COL_YELLOW Configuration complete :). Enjoy!\n $COL_RESET"
