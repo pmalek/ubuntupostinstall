@@ -20,4 +20,4 @@ Custom system settings and improvements:
 * diable overlay scrollbars
 * remove unity's scope and lense for online integration like: facebook, gmusic, amazon, gdrive etc.
 
-For now it has been only tested to work with Ubuntu 13.10
+For now it has been only tested to work with Ubuntu 13.10 and 14.04.
