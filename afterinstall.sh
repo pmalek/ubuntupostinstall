@@ -11,6 +11,7 @@ COL_MAGENTA=$ESC_SEQ"35;01m"
 COL_CYAN=$ESC_SEQ"36;01m"
 
 current_dir=`pwd`
+# script dir
 DIR="$( cd "$( dirname "$0"  )" && pwd )"
 toinstall=""
 topurge=""
@@ -119,6 +120,7 @@ then
   sed -i 's/"\ \(.*solarized.*\)/\1/g' ~/.vimrc
   ln -s ~/.vim/bundle/xmledit/ftplugin/xml.vim ~/.vim/bundle/xmledit/ftplugin/html.vim
 fi
+############################ END OF VUNDLE
 ####################################################################
 
 
@@ -150,7 +152,7 @@ wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master
 cd ~
 chsh -s /bin/zsh
 sed -i 's@robbyrussell@af-magic@' ~/.zshrc
-sed -i 's@plugins=(git)@plugins=(git virtualenv node npm copyfile copydir sudo encode64 mvn nyan pip)@' ~/.zshrc
+sed -i 's@plugins=(git)@plugins=(git git-extras virtualenv node npm copyfile copydir sudo encode64 mvn nyan pip)@' ~/.zshrc
 sed -i "s@\(export\ PATH=\"\)\(.*\)@\1/home/$(whoami)/bin:~/\.local/bin:\2@" ~/.zshrc
 # oh-my-zsh fix for afmagic theme
 sed -i -r "s@PROMPT=(.*virtualenv_)@RPROMPT=\1@" ~/.oh-my-zsh/themes/af-magic.zsh-theme
@@ -184,8 +186,8 @@ fi
 
 
 ####################################################################
-# fix ubuntu privacy fixubuntu.com
-# Figure out the version of Ubuntu that you're running
+############## fix ubuntu privacy fixubuntu.com
+############## Figure out the version of Ubuntu that you're running
 V=`/usr/bin/lsb_release -rs`
  
 # The privacy problems started with 12.10, so earlier versions should do nothing
