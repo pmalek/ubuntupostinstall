@@ -3,7 +3,7 @@
 lines(){
   foreach file in $*
     num=`cat ${file} | wc -l`
-    /usr/bin/printf "%20s has : %'12u lines\n" "$file" $num
+    command printf "%20s has : %'12u lines\n" "$file" $num
   end
 }
 # shows line count of all the files listed in argument list
@@ -12,7 +12,7 @@ lines_sort(){
   mylines=""
   foreach file in $*
     num=`cat ${file} | wc -l`
-    mylines="$mylines $(/usr/bin/printf "%'12u lines : %20s\n" $num "$file") \n"
+    mylines="$mylines $(command printf "%'12u lines : %20s\n" $num "$file") \n"
   end
   mylines=`echo $mylines | sort -h`
   echo $mylines
