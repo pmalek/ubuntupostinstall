@@ -1,55 +1,76 @@
 set nocompatible               " be iMproved 
-
-"  -------------------------------------
-" --------------- VUNDLE ----------------
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+filetype off     " required!
 
 set encoding=utf-8
+" -------------------------------------
+" --------------- VUNDLE --------------
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-" My Bundles here:
+" My Plugins here:
 " original repos on github
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 let g:Powerline_symbols = 'fancy'
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 let g:syntastic_jslint_checkers=['jshint']
-let g:syntastic_check_on_open=1
+" let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tpope/vim-sensible'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'elzr/vim-json'
-Bundle 'HTML-AutoCloseTag'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'scrooloose/nerdtree'
-Bundle 'edkolev/tmuxline.vim'
-Bundle 'tpope/vim-surround'
+let g:syntastic_java_javac_classpath = "$JAVA_HOME/jre/lib"
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'scrooloose/nerdtree'
+Plugin 'edkolev/tmuxline.vim'
+let g:airline#extensions#tmuxline#enabled = 0
+let g:tmuxline_preset = 'full'
+let g:tmuxline_theme = 'powerline'
 
-"Bundle 'gregsexton/MatchTag'
-"Bundle 'airblade/vim-gitgutter'
-"Bundle 'Townk/vim-autoclose'
+Plugin 'tpope/vim-sensible'
+" Plugin 'tpope/vim-surround'
+
+Plugin 'pangloss/vim-javascript'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'briancollins/vim-jst'
+Plugin 'elzr/vim-json'
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-m>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" highlight xml tags
+Plugin 'Valloric/MatchTagAlways'
+
+" Plugin 'scrooloose/nerdcommenter'
+" Plugin 'gregsexton/MatchTag'
+" Plugin 'Townk/vim-autoclose'
 
 " vim-scripts repos
-Bundle 'AutoComplPop'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'xmledit'
-"Bundle 'ctrlp.vim'
-"Bundle 'AutoClose'
-"Bundle 'AutoClose--Alves'
-" --------------- VUNDLE ----------------
-"  -------------------------------------
+Plugin 'AutoComplPop'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
+Plugin 'xmledit'
+"Plugin 'ctrlp.vim'
+"Plugin 'AutoClose'
+"Plugin 'AutoClose--Alves'
+call vundle#end()
+" --------------- VUNDLE --------------
+" -------------------------------------
 
 filetype plugin indent on     " required!
 syntax on
 
-let g:loaded_matchit = 1
 
 " Solarized theme
 let g:solarized_termtrans=1
@@ -70,6 +91,11 @@ set backspace=2
 " pretty-print JSON files
 autocmd BufRead,BufNewFile *.json set filetype=json
 autocmd BufRead,BufNewFile *.html set filetype=html
+autocmd BufRead,BufNewFile *.ejs set filetype=jst
+autocmd BufRead,BufNewFile *.jade set filetype=jade
+autocmd BufRead,BufNew *.md set filetype=markdown
+
+
 " json.vim is here: http://www.vim.org/scripts/script.php?script_id=1945
 "autocmd Syntax json sou ~/.vim/syntax/json.vim
 " json_reformat is part of yajl: http://lloyd.github.com/yajl/
@@ -77,18 +103,18 @@ autocmd BufRead,BufNewFile *.html set filetype=html
 "
 " prettify for javascript
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-"au FileType html,xhtml,xml so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
-"au FileType html,xhtml,xml so ~/.vim/bundle/vim-autoclose/plugin/AutoClose.vim
 
-"autocmd BufReadPre,BufReadPost,FileReadPre,FileReadPost *.java execute "normal :%g/\/\*/normal! zf%"
-autocmd FileType java %g/\/\*/normal! zf%
-autocmd FileType java setlocal foldmethod=syntax
+" autocmd BufReadPre,BufReadPost,FileReadPre,FileReadPost *.java execute "normal :%g/\/\*/normal! zf%"
+" autocmd FileType java %g/\/\*/normal! zf%
+" autocmd FileType java setlocal foldmethod=syntax
+
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
 " Always show statusline
 set laststatus=2
 
+" -------------------------------------
 " mappings 
 imap <C-Space> <C-x><C-o>
 imap <C-@> <C-Space>
@@ -107,15 +133,17 @@ noremap <F8> <Esc>:tabn<CR>
 inoremap <F8> <Esc>:tabn<CR>
 noremap <F9> <Esc>:tabc<CR>
 inoremap <F9> <Esc>:tabc<CR>
-"imap <Esc> <Esc><Esc>
-
+" imap <Esc> <Esc><Esc>
 map Q <Nop>
-noremap % v%
+" noremap % v%
 inoremap <C-e> <End>
-
-set updatetime=400
 noremap <Space> za
+" -------------------------------------
+command Filepath echo expand('%:p')
+" -------------------------------------
+
+set updatetime=200
 
 map <C-n> :NERDTreeToggle<CR>
+map <C-c> :SyntasticCheck<CR>
 "autocmd vimenter * NERDTree
-"
