@@ -159,7 +159,7 @@ sed -i -r "s@PROMPT=(.*virtualenv_)@RPROMPT=\1@" ~/.oh-my-zsh/themes/af-magic.zs
 echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
 echo "alias pbpaste='xsel --clipboard --output'" >> ~/.zshrc
 echo "alias tmux='tmux -2'" >> ~/.zshrc
-# echo "alias ll='ls -lh" >> ~/.zshrc
+echo "alias ll='ls -lhF" >> ~/.zshrc
 echo "alias lt='ls -lhtr" >> ~/.zshrc
 echo "alias la='ls -lhA" >> ~/.zshrc
 # lines and lines_sort methods
