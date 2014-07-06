@@ -21,6 +21,7 @@ Plugin 'scrooloose/syntastic'
 let g:syntastic_jslint_checkers=['jshint']
 " let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
+" :$ADT_SDK_PATH/platforms/android-19/*.jar:~/programming/android/workspace/appcompat_v7/bin/*.jar:~/programming/android/workspace/appcompat_v7/libs/*.jar
 let g:syntastic_java_javac_classpath = "$JAVA_HOME/jre/lib"
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jiangmiao/auto-pairs'
