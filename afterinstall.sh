@@ -116,7 +116,7 @@ then
   cp $DIR/.tmux.conf ~
   cp $DIR/.tmuxline.conf ~
   sed -i 's/.*solarized.*/"\ &/g' ~/.vimrc
-  vim +BundleInstall +qall!
+  vim +PluginInstall +qall!
   sed -i 's/"\ \(.*solarized.*\)/\1/g' ~/.vimrc
   ln -s ~/.vim/bundle/xmledit/ftplugin/xml.vim ~/.vim/bundle/xmledit/ftplugin/html.vim
 fi
