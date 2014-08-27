@@ -17,6 +17,7 @@ Plugin 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 let g:Powerline_symbols = 'fancy'
+Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 let g:syntastic_jslint_checkers=['jshint']
 " let g:syntastic_check_on_open=1
