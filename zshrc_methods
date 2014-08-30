@@ -1,9 +1,17 @@
 
+#shows line number $1 of file $2
+ESC_SEQ="\x1b["
+COL_GREEN=$ESC_SEQ"32;01m"
+COL_RESET=$ESC_SEQ"39;49;00m"
+showline(){
+  templine=`sed -n "$1"p $2`
+  echo $COL_GREEN$1:$COL_RESET $templine
+}
 # shows line count of all the files listed in argument list
 lines(){
   foreach file in $*
     num=`cat ${file} | wc -l`
-    command printf "%20s has : %'12u lines\n" "$file" $num
+    command printf "%30s has : %'12u lines\n" "$file" $num
   end
 }
 # shows line count of all the files listed in argument list
