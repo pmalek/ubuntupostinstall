@@ -83,6 +83,8 @@ sudo add-apt-repository ppa:djcj/vlc-stable -y
 sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
 # latest stable git release
 sudo add-apt-repository ppa:git-core/ppa -y
+# deluge team ppa
+sudo add-apt-repository ppa:deluge-team/ppa -y
 
 sudo apt-get update
 
