@@ -23,6 +23,7 @@ let g:syntastic_jslint_checkers=['jshint']
 " let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_java_javac_classpath = "$JAVA_HOME/jre/lib"
+let g:syntastic_cpp_compiler_options = "-std=c++11"
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
@@ -32,7 +33,7 @@ let g:tmuxline_preset = 'full'
 let g:tmuxline_theme = 'powerline'
 
 Plugin 'tpope/vim-sensible'
-" Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'digitaltoad/vim-jade'
@@ -83,6 +84,7 @@ set incsearch
 set number
 set shiftwidth=2
 set tabstop=2
+set softtabstop=2
 set expandtab
 set hls
 set timeoutlen=1
@@ -148,3 +150,9 @@ set updatetime=200
 map <C-n> :NERDTreeToggle<CR>
 map <C-c> :SyntasticCheck<CR>
 "autocmd vimenter * NERDTree
+
+" Overriden by solarized theme
+"hi LineNr cterm=bold ctermfg=220
+" Set 8 lines to the cursor - when moving vertically using j/k
+set so=8
+set cursorline
