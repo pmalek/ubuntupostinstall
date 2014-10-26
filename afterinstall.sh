@@ -24,8 +24,9 @@ suretopurge(){
   echo -e "$COL_YELLOW " && read -p "Are you sure to purge $1 ('y' to purge)? " -n 1 -r ; echo -e "$COL_RESET"
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-      $topurge="$topurge $1"
-      # sudo apt-get purge $1 -y
+    topurge="$topurge $1"
+    echo "\"$topurge\""
+    # sudo apt-get purge $1 -y
   fi
 }
 
@@ -33,8 +34,8 @@ suretoinstall(){
   echo -e "$col_yellow " && read -p "are you sure to install $1 ('y' to install)? " -n 1 -r ; echo -e "$col_reset"
   if [[ $reply =~ ^[yy]$ ]]
   then
-      $toinstall="$toinstall $1"
-      # sudo apt-get install $1 -y
+    toinstall="$toinstall $1"
+    # sudo apt-get install $1 -y
   fi
 }
 
@@ -55,15 +56,15 @@ suretoinstall clementine
 
 # Fixes Skype theme on 64 bit systems
 if [[ `uname -m` =~ .*64.* ]] ; then 
-  $toinstall="$toinstall gtk2-engines-murrine:i386"
+  toinstall="$toinstall gtk2-engines-murrine:i386"
 fi
 
 echo -e "$col_yellow " && read -p "Do you want to install Java Development Kit ('y' to install)? " -n 1 -r ; echo -e "$col_reset"
 if [[ $reply =~ ^[Yy]$ ]]
 then
-  $toinstall="$toinstall oracle-jdk7-installer"
+  toinstall="$toinstall oracle-jdk7-installer"
 else
-  $toinstall="$toinstall oracle-java7-installer"
+  toinstall="$toinstall oracle-java7-installer"
 fi
 
 # purge unnecessary packages
@@ -77,8 +78,6 @@ sudo add-apt-repository ppa:linrunner/tlp -y
 # sudo add-apt-repository ppa:xorg-edgers/ppa -y
 # add  webupd8 PPA for java installation
 sudo add-apt-repository ppa:webupd8team/java -y
-# vlc stable ppa
-sudo add-apt-repository ppa:djcj/vlc-stable -y
 # gimp updates yet not bleeding edge
 sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
 # latest stable git release
@@ -120,6 +119,7 @@ then
   sed -i 's/.*solarized.*/"\ &/g' ~/.vimrc
   vim +PluginInstall +qall!
   sed -i 's/"\ \(.*solarized.*\)/\1/g' ~/.vimrc
+  vim +PluginInstall +qall!
   ln -s ~/.vim/bundle/xmledit/ftplugin/xml.vim ~/.vim/bundle/xmledit/ftplugin/html.vim
 fi
 ############################ END OF VUNDLE
@@ -161,9 +161,9 @@ sed -i -r "s@PROMPT=(.*virtualenv_)@RPROMPT=\1@" ~/.oh-my-zsh/themes/af-magic.zs
 echo "alias pbcopy='xsel --clipboard --input'" >> ~/.zshrc
 echo "alias pbpaste='xsel --clipboard --output'" >> ~/.zshrc
 echo "alias tmux='tmux -2'" >> ~/.zshrc
-echo "alias ll='ls -lhF" >> ~/.zshrc
-echo "alias lt='ls -lhtr" >> ~/.zshrc
-echo "alias la='ls -lhA" >> ~/.zshrc
+echo "alias ll='ls -lhF'" >> ~/.zshrc
+echo "alias lt='ls -lhtr'" >> ~/.zshrc
+echo "alias la='ls -lhA'" >> ~/.zshrc
 # lines and lines_sort methods
 cat "$DIR/zshrc_methods" >> ~/.zshrc
 ################         END OF OH-MY-ZSH
