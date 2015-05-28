@@ -87,8 +87,8 @@ set tabstop=2
 set softtabstop=2
 set expandtab
 set hls
-set timeoutlen=1
-set ttimeoutlen=1
+set timeoutlen=3000
+set ttimeoutlen=1000
 set backspace=2
 
 " pretty-print JSON files
