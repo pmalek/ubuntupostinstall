@@ -20,9 +20,13 @@ let g:Powerline_symbols = 'fancy'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 let g:syntastic_jslint_checkers=['jshint']
-" let g:syntastic_check_on_open=1
+let g:syntastic_python_checkers = ['python', 'pylint']
+let g:syntastic_python_pylint_args="--module-rgx='[a-z_][a-z0-9_-]{2,30}$'"
+let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
-let g:syntastic_java_javac_classpath = "$JAVA_HOME/jre/lib"
+let g:syntastic_check_on_wq = 0
+" let g:syntastic_java_javac_classpath = "$JAVA_HOME/jre/lib"
+let g:syntastic_mode_map = { 'passive_filetypes': ['java'] }
 let g:syntastic_cpp_compiler_options = "-std=c++11"
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jiangmiao/auto-pairs'
