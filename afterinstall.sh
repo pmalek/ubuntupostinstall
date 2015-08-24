@@ -140,7 +140,7 @@ sudo cp $DIR/preferences.ui /usr/share/indicator-multiload/preferences.ui
 
 ####################################################################
 #################       BEGIN OF GIT CONFIG
-git config --global color.ui auto
+cp ./.gitconfig ~/.gitconfig
 # install git extras https://github.com/visionmedia/git-extras
 (cd /tmp && git clone --depth 1 https://github.com/visionmedia/git-extras.git && cd git-extras && sudo make install)
 #################       END OF GIT CONFIG
