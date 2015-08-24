@@ -44,32 +44,30 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'briancollins/vim-jst'
 Plugin 'elzr/vim-json'
 
+Plugin 'Valloric/YouCompleteMe'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
+" ctrl-l for snippet expand...
+let g:UltiSnipsExpandTrigger="<c-l>"
+" ... and ctrl-m to jump forward inside it between placeholders
 let g:UltiSnipsJumpForwardTrigger="<c-m>"
+" or ctrl-z to jump backwards
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-
 " highlight xml tags
 Plugin 'Valloric/MatchTagAlways'
-
-" Plugin 'scrooloose/nerdcommenter'
-" Plugin 'gregsexton/MatchTag'
-" Plugin 'Townk/vim-autoclose'
 
 " vim-scripts repos
 Plugin 'AutoComplPop'
 Plugin 'L9'
 Plugin 'FuzzyFinder'
 Plugin 'xmledit'
-"Plugin 'ctrlp.vim'
-"Plugin 'AutoClose'
-"Plugin 'AutoClose--Alves'
 call vundle#end()
 " --------------- VUNDLE --------------
 " -------------------------------------
