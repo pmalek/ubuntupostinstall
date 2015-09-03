@@ -166,6 +166,22 @@ echo "alias lt='ls -lhtr'" >> ~/.zshrc
 echo "alias la='ls -lhA'" >> ~/.zshrc
 # lines and lines_sort methods
 cat "$DIR/zshrc_methods" >> ~/.zshrc
+# zsh-syntax-highlighting
+( rm -rf ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting && cd ~/.oh-my-zsh/custom/plugins && \
+git clone git://github.com/zsh-users/zsh-syntax-highlighting.git 2> /dev/null && \
+if ! grep -q zsh-syntax-highlighting ~/.zshrc; then sed -i -r 's#^(plugins=.*)\)#\1 zsh-syntax-highlighting)#' ~/.zshrc; fi && \
+sed -i '/ZSH_HIGHLIGHT_.*/d' ~/.zshrc && \
+
+cat << EOF >> ~/.zshrc
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets pattern)
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=red,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=yellow,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
+EOF
+)
 ################         END OF OH-MY-ZSH
 ####################################################################
 
