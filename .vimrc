@@ -158,3 +158,4 @@ map <C-c> :SyntasticCheck<CR>
 " Set 8 lines to the cursor - when moving vertically using j/k
 set so=8
 set cursorline
+set mouse=a
