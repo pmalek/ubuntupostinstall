@@ -187,6 +187,31 @@ EOF
 
 
 ####################################################################
+############### Tmux and plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm/
+git clone https://github.com/tmux-plugins/tmux-copycat ~/.tmux/plugins/tmux-copycat/
+git clone https://github.com/tmux-plugins/tmux-yank ~/.tmux/plugins/tmux-yank/
+
+cat << EOF >> ~/.tmux.conf
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'git@github.com/user/plugin'
+# set -g @plugin 'git@bitbucket.com/user/plugin'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+EOF
+tmux source ~/.tmux.conf
+####################################################################
+
+
+####################################################################
 ############### Powerline fonts for gnome terminal
 cd ~/.fonts/ && wget https://github.com/Lokaltog/powerline-fonts/archive/master.zip && unzip master.zip 
 mv powerline-fonts-master/* . && rm -rf master.zip powerline-fonts-master
