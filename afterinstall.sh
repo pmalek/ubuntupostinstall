@@ -70,6 +70,8 @@ fi
 # purge unnecessary packages
 sudo apt-get purge unity-scope-gdrive unity-scope-musicstores unity-scope-gmusicbrowser unity-lens-friends unity-scope-audacious unity-scope-guayadeque unity-scope-firefoxbookmarks unity-scope-virtualbox unity-scope-yelp unity-lens-video unity-lens-photos unity-lens-music unity-scope-chromiumbookmarks rhythmbox account-plugin-facebook account-plugin-aim account-plugin-windows-live account-plugin-flickr account-plugin-yahoo account-plugin-jabber account-plugin-salut brasero brasero-cdrkit brasero-common gnome-mahjongg unity-lens-photos unity-scope-openclipart unity-scope-musique unity-scope-colourlovers gnome-orca unity-scope-zotero unity-scope-tomboy unity-scope-texdoc transmission-common transmission-gtk unity-scope-video-remote totem account-plugin-twitter friends-twitter landscape-client-ui-install gnome-mines gnome-sudoku gnome-mahjongg $topurge -y
 
+sudo apt-get install software-properties-common -y
+
 # install clementine
 sudo add-apt-repository ppa:me-davidsansome/clementine -y
 # install tlp power management
