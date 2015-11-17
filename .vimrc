@@ -22,12 +22,13 @@ Plugin 'scrooloose/syntastic'
 let g:syntastic_jslint_checkers=['jshint']
 let g:syntastic_python_checkers = ['python', 'pylint']
 let g:syntastic_python_pylint_args="--module-rgx='[a-z_][a-z0-9_-]{2,30}$'"
+let g:syntastic_cpp_compiler_options = "-std=c++14"
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_check_on_wq = 0
 " let g:syntastic_java_javac_classpath = "$JAVA_HOME/jre/lib"
 let g:syntastic_mode_map = { 'passive_filetypes': ['java'] }
-let g:syntastic_cpp_compiler_options = "-std=c++11"
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
@@ -35,6 +36,21 @@ Plugin 'edkolev/tmuxline.vim'
 let g:airline#extensions#tmuxline#enabled = 0
 let g:tmuxline_preset = 'full'
 let g:tmuxline_theme = 'powerline'
+
+Plugin 'rhysd/vim-clang-format'
+" let g:clang_format#code_style = 'chromium'
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -2,
+            \ "BreakBeforeBraces" : "Mozilla",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11",
+            \ "ColumnLimit" : 100,
+            \ "BinPackParameters" : "false",
+            \ "AllowShortFunctionsOnASingleLine" : "false" }
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+
 
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
