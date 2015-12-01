@@ -184,6 +184,9 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=yellow,bold'
 ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
 EOF
 )
+
+# add shell completion after -t= parameters
+echo "setopt magic_equal_subst" >> ~/.zshrc
 ################         END OF OH-MY-ZSH
 ####################################################################
 
