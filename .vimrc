@@ -41,15 +41,17 @@ Plugin 'rhysd/vim-clang-format'
 " let g:clang_format#code_style = 'chromium'
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -2,
-            \ "BreakBeforeBraces" : "Mozilla",
+            \ "BreakBeforeBraces" : "Allman",
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "Standard" : "C++11",
             \ "ColumnLimit" : 100,
             \ "BinPackParameters" : "false",
             \ "AllowShortFunctionsOnASingleLine" : "false" }
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp nnoremap <buffer><F9> :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp vnoremap <buffer><F9> :ClangFormat<CR>
 
 
 Plugin 'tpope/vim-sensible'
