@@ -13,11 +13,14 @@ Plugin 'gmarik/vundle'
 
 " My Plugins here:
 " original repos on github
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 let g:Powerline_symbols = 'fancy'
 Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 let g:syntastic_jslint_checkers=['jshint']
 let g:syntastic_python_checkers = ['python', 'pylint']
@@ -28,10 +31,14 @@ let g:syntastic_enable_signs=1
 let g:syntastic_check_on_wq = 0
 " let g:syntastic_java_javac_classpath = "$JAVA_HOME/jre/lib"
 let g:syntastic_mode_map = { 'passive_filetypes': ['java'] }
-Plugin 'scrooloose/nerdcommenter'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'scrooloose/nerdtree'
 Plugin 'edkolev/tmuxline.vim'
 let g:airline#extensions#tmuxline#enabled = 0
 let g:tmuxline_preset = 'full'
@@ -56,6 +63,7 @@ autocmd FileType c,cpp vnoremap <buffer><F9> :ClangFormat<CR>
 
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'digitaltoad/vim-jade'
