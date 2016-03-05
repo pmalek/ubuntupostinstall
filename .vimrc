@@ -92,8 +92,21 @@ Plugin 'Valloric/MatchTagAlways'
 " vim-scripts repos
 Plugin 'AutoComplPop'
 Plugin 'L9'
-Plugin 'FuzzyFinder'
 Plugin 'xmledit'
+
+" Golang Plugins
+Plugin 'fatih/vim-go'
+Plugin 'Blackrush/vim-gocode'
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 call vundle#end()
 " --------------- VUNDLE --------------
 " -------------------------------------
