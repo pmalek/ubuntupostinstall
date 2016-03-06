@@ -101,6 +101,7 @@ au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -139,7 +140,6 @@ autocmd BufRead,BufNewFile *.ejs set filetype=jst
 autocmd BufRead,BufNewFile *.jade set filetype=jade
 autocmd BufRead,BufNew *.md set filetype=markdown
 
-
 " json.vim is here: http://www.vim.org/scripts/script.php?script_id=1945
 "autocmd Syntax json sou ~/.vim/syntax/json.vim
 " json_reformat is part of yajl: http://lloyd.github.com/yajl/
@@ -147,10 +147,6 @@ autocmd BufRead,BufNew *.md set filetype=markdown
 "
 " prettify for javascript
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-
-" autocmd BufReadPre,BufReadPost,FileReadPre,FileReadPost *.java execute "normal :%g/\/\*/normal! zf%"
-" autocmd FileType java %g/\/\*/normal! zf%
-" autocmd FileType java setlocal foldmethod=syntax
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
@@ -176,9 +172,7 @@ noremap <F7> <Esc>:tabp<CR>
 inoremap <F7> <Esc>:tabp<CR>
 noremap <F8> <Esc>:tabn<CR>
 inoremap <F8> <Esc>:tabn<CR>
-noremap <F9> <Esc>:tabc<CR>
-inoremap <F9> <Esc>:tabc<CR>
-" imap <Esc> <Esc><Esc>
+
 map Q <Nop>
 " noremap % v%
 inoremap <C-e> <End>
