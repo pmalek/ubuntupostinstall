@@ -99,6 +99,8 @@ Plugin 'fatih/vim-go'
 Plugin 'Blackrush/vim-gocode'
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
@@ -108,6 +110,8 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+" format with goimports instead of gofmt
+let g:go_fmt_command = "goimports"
 call vundle#end()
 " --------------- VUNDLE --------------
 " -------------------------------------
@@ -190,6 +194,6 @@ map <C-c> :SyntasticCheck<CR>
 " Overriden by solarized theme
 "hi LineNr cterm=bold ctermfg=220
 " Set 8 lines to the cursor - when moving vertically using j/k
-set so=8
+set so=6
 set cursorline
 set mouse=a
