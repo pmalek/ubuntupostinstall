@@ -110,8 +110,14 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-" format with goimports instead of gofmt
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "goimports" " "format with goimports instead of gofmt
+
+Plugin 'majutsushi/tagbar'
+let g:tagbar_width = 60
+let g:tagbar_sort = 0
+let g:tagbar_indent = 0
+let g:tagbar_show_linenumbers = -1
+nmap <F8> :TagbarToggle<CR>
 call vundle#end()
 " --------------- VUNDLE --------------
 " -------------------------------------
@@ -170,12 +176,10 @@ noremap <F3> <Esc>:wq<CR>
 inoremap <F4> <Esc>:q!<CR>
 noremap <F4> <Esc>:q!<CR>
 set pastetoggle=<F5>
-noremap <F6> <Esc>:tabe 
-inoremap <F6> <Esc>:tabe 
-noremap <F7> <Esc>:tabp<CR>
-inoremap <F7> <Esc>:tabp<CR>
-noremap <F8> <Esc>:tabn<CR>
-inoremap <F8> <Esc>:tabn<CR>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 map Q <Nop>
 " noremap % v%
