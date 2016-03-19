@@ -94,6 +94,11 @@ Plugin 'AutoComplPop'
 Plugin 'L9'
 Plugin 'xmledit'
 
+Plugin 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_cmd = 'CtrlPMixed'
+set wildignore+=*/tmp/*,*.a,*.so,*.swp,*.zip,*.tar.gz,*.deb
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
 " Golang Plugins
 Plugin 'fatih/vim-go'
 Plugin 'Blackrush/vim-gocode'
