@@ -76,8 +76,6 @@ sudo apt-get install software-properties-common -y
 sudo add-apt-repository ppa:me-davidsansome/clementine -y
 # install tlp power management
 sudo add-apt-repository ppa:linrunner/tlp -y
-# install new nvidia drivers from xorg-edgers
-# sudo add-apt-repository ppa:xorg-edgers/ppa -y
 # add  webupd8 PPA for java installation
 sudo add-apt-repository ppa:webupd8team/java -y
 # gimp updates yet not bleeding edge
@@ -114,7 +112,7 @@ fi
 echo -e "$COL_YELLOW" && read -p "Are you sure to install vundle to manage your vim plugins? " -n 1 -r ; echo -e "$COL_RESET"
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+  git clone --depth 1 https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
   cp $DIR/.vimrc ~
   cp $DIR/.tmux.conf ~
   cp $DIR/.tmuxline.conf ~
@@ -128,10 +126,6 @@ fi
 ####################################################################
 
 
-# Lokaltog/powerline
-# uninstall with : pip uninstall powerline
-# pip install --user git+git://github.com/Lokaltog/powerline
-
 # network speed indicator
 cd ~/programming/scripts 
 wget http://webupd8.googlecode.com/files/sysmon_0.2.tar.gz && tar -xvf sysmon_0.2.tar.gz
@@ -141,22 +135,13 @@ sudo cp $DIR/preferences.ui /usr/share/indicator-multiload/preferences.ui
 
 
 ####################################################################
-#################       BEGIN OF GIT CONFIG
-cp ./.gitconfig ~/.gitconfig
-# install git extras https://github.com/visionmedia/git-extras
-(cd /tmp && git clone --depth 1 https://github.com/visionmedia/git-extras.git && cd git-extras && sudo make install)
-#################       END OF GIT CONFIG
-####################################################################
-
-
-####################################################################
 #################       BEGIN OF OH-MY-ZSH
 cd /tmp
 wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh
 cd ~
 chsh -s /bin/zsh
 sed -i 's@robbyrussell@af-magic@' ~/.zshrc
-sed -i 's@plugins=(git)@plugins=(git git-extras virtualenv node npm copyfile copydir sudo encode64 mvn nyan pip)@' ~/.zshrc
+sed -i 's@plugins=(git)@plugins=(git git-extras virtualenv node npm copyfile copydir sudo encode64 mvn nyan pip golang)@' ~/.zshrc
 sed -i "s@\(export\ PATH=\"\)\(.*\)@\1/home/$(whoami)/bin:~/\.local/bin:\2@" ~/.zshrc
 # oh-my-zsh fix for afmagic theme
 sed -i -r "s@PROMPT=(.*virtualenv_)@RPROMPT=\1@" ~/.oh-my-zsh/themes/af-magic.zsh-theme
@@ -170,7 +155,7 @@ echo "alias la='ls -lhA'" >> ~/.zshrc
 cat "$DIR/zshrc_methods" >> ~/.zshrc
 # zsh-syntax-highlighting
 ( rm -rf ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting && cd ~/.oh-my-zsh/custom/plugins && \
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git 2> /dev/null && \
+git clone --depth 1 git://github.com/zsh-users/zsh-syntax-highlighting.git 2> /dev/null && \
 if ! grep -q zsh-syntax-highlighting ~/.zshrc; then sed -i -r 's#^(plugins=.*)\)#\1 zsh-syntax-highlighting)#' ~/.zshrc; fi && \
 sed -i '/ZSH_HIGHLIGHT_.*/d' ~/.zshrc && \
 
@@ -193,9 +178,9 @@ echo "setopt magic_equal_subst" >> ~/.zshrc
 
 ####################################################################
 ############### Tmux and plugins
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm/
-git clone https://github.com/tmux-plugins/tmux-copycat ~/.tmux/plugins/tmux-copycat/
-git clone https://github.com/tmux-plugins/tmux-yank ~/.tmux/plugins/tmux-yank/
+git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm/
+git clone --depth 1 https://github.com/tmux-plugins/tmux-copycat ~/.tmux/plugins/tmux-copycat/
+git clone --depth 1 https://github.com/tmux-plugins/tmux-yank ~/.tmux/plugins/tmux-yank/
 
 cat << EOF >> ~/.tmux.conf
 
