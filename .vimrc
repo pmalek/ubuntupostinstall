@@ -50,6 +50,7 @@ let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -2,
             \ "BreakBeforeBraces" : "Allman",
             \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "UseTab" : "Never",
             \ "Standard" : "C++11",
             \ "ColumnLimit" : 100,
             \ "BinPackParameters" : "false",
