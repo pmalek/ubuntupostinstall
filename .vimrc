@@ -1,4 +1,4 @@
-set nocompatible               " be iMproved 
+set nocompatible               " be iMproved
 filetype off     " required!
 
 set encoding=utf-8
@@ -25,7 +25,8 @@ Plugin 'scrooloose/syntastic'
 let g:syntastic_jslint_checkers=['jshint']
 let g:syntastic_python_checkers = ['python', 'pylint']
 let g:syntastic_python_pylint_args="--module-rgx='[a-z_][a-z0-9_-]{2,30}$'"
-let g:syntastic_cpp_compiler_options = "-std=c++14"
+let g:syntastic_cpp_compiler_options="-std=c++14"
+let g:syntastic_debug = 0
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_check_on_wq = 0
@@ -48,13 +49,25 @@ Plugin 'rhysd/vim-clang-format'
 " let g:clang_format#code_style = 'chromium'
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -2,
-            \ "BreakBeforeBraces" : "Allman",
+            \ "BreakBeforeBraces" : "Custom",
+            \ "BraceWrapping" : {
+            \   "AfterControlStatement" : "true",
+            \   "AfterFunction" : "true",
+            \   "AfterClass" : "true",
+            \   "AfterStruct" : "true",
+            \   "AfterNamespace" : "true",
+            \   "BeforeCatch" : "true",
+            \   "BeforeElse" : "true"
+            \ },
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "UseTab" : "Never",
             \ "Standard" : "C++11",
             \ "ColumnLimit" : 100,
             \ "BinPackParameters" : "false",
-            \ "AllowShortFunctionsOnASingleLine" : "false" }
+            \ "AlignConsecutiveAssignments" : "true",
+            \ "AllowShortLoopsOnASingleLine" : "true",
+            \ "AllowShortIfStatementsOnASingleLine" : "true"
+            \ }
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
@@ -67,8 +80,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 
 Plugin 'pangloss/vim-javascript'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'briancollins/vim-jst'
 Plugin 'elzr/vim-json'
 
 Plugin 'Valloric/YouCompleteMe'
@@ -119,11 +130,16 @@ let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports" " "format with goimports instead of gofmt
 
 Plugin 'majutsushi/tagbar'
-let g:tagbar_width = 60
+let g:tagbar_width = 50
 let g:tagbar_sort = 0
-let g:tagbar_indent = 0
-let g:tagbar_show_linenumbers = -1
+let g:tagbar_indent = 2
+let g:tagbar_show_linenumbers = 0
 nmap <F8> :TagbarToggle<CR>
+function! LaunchTagbar()
+  :call tagbar#autoopen(0)
+endfunction
+autocmd FileType c,cpp call LaunchTagbar()
+
 call vundle#end()
 " --------------- VUNDLE --------------
 " -------------------------------------
@@ -171,7 +187,7 @@ cmap w!! w !sudo tee > /dev/null %
 set laststatus=2
 
 " -------------------------------------
-" mappings 
+" mappings
 imap <C-Space> <C-x><C-o>
 imap <C-@> <C-Space>
 imap jj <Esc>
