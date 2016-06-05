@@ -22,14 +22,16 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-let g:syntastic_jslint_checkers=['jshint']
+let g:syntastic_jslint_checkers = ['jshint']
 let g:syntastic_python_checkers = ['python', 'pylint']
-let g:syntastic_python_pylint_args="--module-rgx='[a-z_][a-z0-9_-]{2,30}$'"
-let g:syntastic_cpp_compiler_options="-std=c++14"
-let g:syntastic_debug = 0
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_python_pylint_args = "--module-rgx='[a-z_][a-z0-9_-]{2,30}$'"
+let g:syntastic_c_compiler_options = "-std=c11"
+let g:syntastic_cpp_compiler_options = "-std=c++14"
+let g:syntastic_cpp_include_dirs = ['src/', 'include/']
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_check_on_wq = 1
+let g:ycm_confirm_extra_conf = 0 " prevent confirmation for loading .ycm_extra_conf.py
 " let g:syntastic_java_javac_classpath = "$JAVA_HOME/jre/lib"
 let g:syntastic_mode_map = { 'passive_filetypes': ['java'] }
 set statusline+=%#warningmsg#
@@ -49,30 +51,19 @@ Plugin 'rhysd/vim-clang-format'
 " let g:clang_format#code_style = 'chromium'
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -2,
-            \ "BreakBeforeBraces" : "Custom",
-            \ "BraceWrapping" : {
-            \   "AfterControlStatement" : "true",
-            \   "AfterFunction" : "true",
-            \   "AfterClass" : "true",
-            \   "AfterStruct" : "true",
-            \   "AfterNamespace" : "true",
-            \   "BeforeCatch" : "true",
-            \   "BeforeElse" : "true"
-            \ },
+            \ "BreakBeforeBraces" : "Allman",
             \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "UseTab" : "Never",
             \ "Standard" : "C++11",
-            \ "ColumnLimit" : 100,
+            \ "ColumnLimit" : 128,
             \ "BinPackParameters" : "false",
-            \ "AlignConsecutiveAssignments" : "true",
-            \ "AllowShortLoopsOnASingleLine" : "true",
-            \ "AllowShortIfStatementsOnASingleLine" : "true"
-            \ }
+            \ "UseTab" : "Never",
+            \ "AllowShortFunctionsOnASingleLine" : "true" }
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp nnoremap <buffer><F9> :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp vnoremap <buffer><F9> :ClangFormat<CR>
+
 
 
 Plugin 'tpope/vim-sensible'
@@ -130,17 +121,16 @@ let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports" " "format with goimports instead of gofmt
 
 Plugin 'majutsushi/tagbar'
-let g:tagbar_width = 50
+let g:tagbar_width = 60
 let g:tagbar_sort = 0
-let g:tagbar_indent = 2
-let g:tagbar_show_linenumbers = 0
+let g:tagbar_indent = 0
+let g:tagbar_show_linenumbers = -1
 nmap <F8> :TagbarToggle<CR>
-function! LaunchTagbar()
-  :call tagbar#autoopen(0)
-endfunction
-autocmd FileType c,cpp call LaunchTagbar()
-
 call vundle#end()
+
+Plugin 'benmills/vimux'
+" run unit tests ...
+autocmd FileType c,cpp nnoremap <Leader>t :call VimuxRunCommand(" (cd ../*_build && make &&./test/*_test) ")<cr>
 " --------------- VUNDLE --------------
 " -------------------------------------
 
@@ -164,6 +154,7 @@ set hls
 set timeoutlen=3000
 set ttimeoutlen=1000
 set backspace=2
+set clipboard=unnamed
 
 " pretty-print JSON files
 autocmd BufRead,BufNewFile *.json set filetype=json
