@@ -51,13 +51,15 @@ Plugin 'rhysd/vim-clang-format'
 " let g:clang_format#code_style = 'chromium'
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -2,
-            \ "BreakBeforeBraces" : "Allman",
+            \ "AlignTrailingComments" : "true",
+            \ "AlignAfterOpenBracket" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "AllowShortFunctionsOnASingleLine" : "Inline",
+            \ "BreakBeforeBraces" : "Allman",
+            \ "BinPackParameters" : "false",
             \ "Standard" : "C++11",
             \ "ColumnLimit" : 128,
-            \ "BinPackParameters" : "false",
-            \ "UseTab" : "Never",
-            \ "AllowShortFunctionsOnASingleLine" : "true" }
+            \ "UseTab" : "Never" }
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
