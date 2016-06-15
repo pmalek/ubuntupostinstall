@@ -6,13 +6,10 @@ set encoding=utf-8
 " --------------- VUNDLE --------------
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
-
 " let Vundle manage Vundle
 " required!
 Plugin 'gmarik/vundle'
 
-" My Plugins here:
-" original repos on github
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
@@ -128,11 +125,17 @@ let g:tagbar_sort = 0
 let g:tagbar_indent = 0
 let g:tagbar_show_linenumbers = -1
 nmap <F8> :TagbarToggle<CR>
-call vundle#end()
 
 Plugin 'benmills/vimux'
 " run unit tests ...
 autocmd FileType c,cpp nnoremap <Leader>t :call VimuxRunCommand(" (cd ../*_build && make &&./test/*_test) ")<cr>
+
+Plugin 'jamessan/vim-gnupg'
+Plugin 'airblade/vim-gitgutter'
+let g:gitgutter_enabled = 0
+let g:gitgutter_highlight_lines = 1
+nmap <Leader>g :GitGutterToggle<CR>
+call vundle#end()
 " --------------- VUNDLE --------------
 " -------------------------------------
 
