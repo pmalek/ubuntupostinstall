@@ -17,11 +17,13 @@ let g:airline_theme='powerlineish'
 let g:Powerline_symbols = 'fancy'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdcommenter'
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-let g:syntastic_jslint_checkers = ['jshint']
+let g:syntastic_jslint_checkers=['jshint']
 let g:syntastic_python_checkers = ['python', 'pylint']
-let g:syntastic_python_pylint_args = "--module-rgx='[a-z_][a-z0-9_-]{2,30}$'"
+let g:syntastic_python_pylint_args="--module-rgx='[a-z_][a-z0-9_-]{2,30}$'"
 let g:syntastic_c_compiler_options = "-std=c11"
 let g:syntastic_cpp_compiler_options = "-std=c++14"
 let g:syntastic_cpp_include_dirs = ['src/', 'include/']
@@ -103,7 +105,6 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " Golang Plugins
 Plugin 'fatih/vim-go'
-Plugin 'Blackrush/vim-gocode'
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
@@ -117,7 +118,9 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports" " "format with goimports instead of gofmt
+" format with goimports instead of gofmt
+let g:go_fmt_command = "goimports"
+let g:go_list_type = "quickfix"
 
 Plugin 'majutsushi/tagbar'
 let g:tagbar_width = 60
@@ -130,6 +133,7 @@ Plugin 'benmills/vimux'
 " run unit tests ...
 autocmd FileType c,cpp nnoremap <Leader>t :call VimuxRunCommand(" (cd ../*_build && make &&./test/*_test) ")<cr>
 
+Plugin 'rking/ag.vim'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'airblade/vim-gitgutter'
 let g:gitgutter_enabled = 0
@@ -160,6 +164,7 @@ set timeoutlen=3000
 set ttimeoutlen=1000
 set backspace=2
 set clipboard=unnamed
+set list
 
 " pretty-print JSON files
 autocmd BufRead,BufNewFile *.json set filetype=json
