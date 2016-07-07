@@ -142,6 +142,8 @@ EOF
 
 # add shell completion after -t= parameters
 echo "setopt magic_equal_subst" >> ~/.zshrc
+# prevent Ctrl-S from stopping the terminal
+echo "stty -ixon" >> ~/.zshrc
 ################         END OF OH-MY-ZSH
 ####################################################################
 

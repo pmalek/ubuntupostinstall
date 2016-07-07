@@ -191,6 +191,10 @@ set laststatus=2
 " mappings
 imap <C-Space> <C-x><C-o>
 imap <C-@> <C-Space>
+noremap <silent> <C-S> :w<CR>
+inoremap <silent> <C-S> <Esc>:w<CR>
+noremap <silent> <C-A> :wq<CR>
+
 imap jj <Esc>
 inoremap <F2> <Esc>:w<CR>
 noremap <F2> <Esc>:w<CR>
