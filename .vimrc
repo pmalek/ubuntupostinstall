@@ -123,9 +123,9 @@ let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
 
 Plugin 'majutsushi/tagbar'
-let g:tagbar_width = 60
+let g:tagbar_width = 70
 let g:tagbar_sort = 0
-let g:tagbar_indent = 0
+let g:tagbar_indent = 1
 let g:tagbar_show_linenumbers = -1
 nmap <F8> :TagbarToggle<CR>
 
@@ -203,6 +203,7 @@ noremap <F3> <Esc>:wq<CR>
 inoremap <F4> <Esc>:q!<CR>
 noremap <F4> <Esc>:q!<CR>
 set pastetoggle=<F5>
+nnoremap <F6> <Esc>:silent! %s/\s\+$//<CR>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
