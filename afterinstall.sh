@@ -144,6 +144,8 @@ EOF
 echo "setopt magic_equal_subst" >> ~/.zshrc
 # prevent Ctrl-S from stopping the terminal
 echo "stty -ixon" >> ~/.zshrc
+# help neovim produce beutiful colors
+echo "export TERM=xterm" >> ~/.zshrc
 ################         END OF OH-MY-ZSH
 ####################################################################
 
