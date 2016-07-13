@@ -30,14 +30,13 @@ let g:syntastic_cpp_include_dirs = ['src/', 'include/']
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_check_on_wq = 1
-let g:ycm_confirm_extra_conf = 0 " prevent confirmation for loading .ycm_extra_conf.py
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 " let g:syntastic_java_javac_classpath = "$JAVA_HOME/jre/lib"
 let g:syntastic_mode_map = { 'passive_filetypes': ['java'] }
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jiangmiao/auto-pairs'
@@ -76,6 +75,7 @@ Plugin 'elzr/vim-json'
 
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0 " prevent confirmation for loading .ycm_extra_conf.py
 
 " Track the engine.
 Plugin 'SirVer/ultisnips'
