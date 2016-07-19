@@ -111,7 +111,7 @@ cd /tmp && wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my
 cd ~
 chsh -s /bin/zsh
 sed -i 's@robbyrussell@af-magic@' ~/.zshrc
-sed -i 's@plugins=(git)@plugins=(git git-extras virtualenv node npm copyfile copydir sudo encode64 mvn nyan pip golang)@' ~/.zshrc
+sed -i 's@plugins=(git)@plugins=(git git-extras virtualenv copydir copyfile cp command-not-found debian encode64 mvn pip sudo jira zsh-syntax-highlighting emoji docker docker-compose go ubuntu heroku tmux history httpie rsync dircycle)@' ~/.zshrc
 sed -i "s@\(export\ PATH=\"\)\(.*\)@\1/home/$(whoami)/bin:~/\.local/bin:\2@" ~/.zshrc
 # oh-my-zsh fix for afmagic theme
 sed -i -r "s@PROMPT=(.*virtualenv_)@RPROMPT=\1@" ~/.oh-my-zsh/themes/af-magic.zsh-theme
