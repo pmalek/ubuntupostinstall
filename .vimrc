@@ -12,9 +12,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-let g:airline_powerline_fonts = 1
-let g:airline_theme='powerlineish'
-let g:Powerline_symbols = 'fancy'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdcommenter'
 " Enable trimming of trailing whitespace when uncommenting
@@ -26,24 +23,22 @@ let g:syntastic_python_checkers = ['python', 'pylint']
 let g:syntastic_python_pylint_args="--module-rgx='[a-z_][a-z0-9_-]{2,30}$'"
 let g:syntastic_c_compiler_options = "-std=c11"
 let g:syntastic_cpp_compiler_options = "-std=c++14"
-let g:syntastic_cpp_include_dirs = ['src/', 'include/']
+let g:syntastic_cpp_include_dirs =['~/programming/c/folly/include/', 'src/', 'include/', '/usr/include/c++/6/']
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_debug = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 " let g:syntastic_java_javac_classpath = "$JAVA_HOME/jre/lib"
-let g:syntastic_mode_map = { 'passive_filetypes': ['java'] }
+" let g:syntastic_mode_map = { 'passive_filetypes': ['java'] }
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'edkolev/tmuxline.vim'
-let g:airline#extensions#tmuxline#enabled = 0
-let g:tmuxline_preset = 'full'
-let g:tmuxline_theme = 'powerline'
 
 Plugin 'rhysd/vim-clang-format'
 " let g:clang_format#code_style = 'chromium'
@@ -53,10 +48,12 @@ let g:clang_format#style_options = {
             \ "AlignAfterOpenBracket" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "AllowShortFunctionsOnASingleLine" : "Inline",
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "BreakBeforeBraces" : "Allman",
             \ "BinPackParameters" : "false",
+            \ "SpaceBeforeParens" : "Never",
             \ "Standard" : "C++11",
-            \ "ColumnLimit" : 128,
+            \ "ColumnLimit" : 100,
             \ "UseTab" : "Never" }
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
@@ -138,9 +135,6 @@ autocmd FileType c,cpp nnoremap <Leader>t :call VimuxRunCommand(" (cd ../*_build
 Plugin 'rking/ag.vim'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'airblade/vim-gitgutter'
-let g:gitgutter_enabled = 0
-let g:gitgutter_highlight_lines = 1
-nmap <Leader>g :GitGutterToggle<CR>
 call vundle#end()
 " --------------- VUNDLE --------------
 " -------------------------------------
@@ -148,6 +142,12 @@ call vundle#end()
 filetype plugin indent on     " required!
 syntax on
 
+" Airline
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='powerlineish'
+let g:Powerline_symbols = 'fancy'
 
 " Solarized theme
 let g:solarized_termtrans=1
@@ -231,3 +231,8 @@ map <C-c> :SyntasticCheck<CR>
 set so=6
 set cursorline
 set mouse=a
+
+" gitgutter
+"let g:gitgutter_enabled = 0
+let g:gitgutter_highlight_lines = 1
+nmap <Leader>g :GitGutterToggle<CR>
