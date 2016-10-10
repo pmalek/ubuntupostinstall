@@ -251,5 +251,10 @@ cd /tmp && git clone --depth 1 https://github.com/ggreer/the_silver_searcher.git
   ./build.sh >/dev/null 2>&1
 ################################################################
 
+################################################################
+echo -e "\n $COL_YELLOW Copying .gdbinit to your home dir...\n $COL_RESET"
+cp .gdbinit ~
+################################################################
+
 cd $current_dir
 echo -e "\n $COL_YELLOW Configuration complete :). Enjoy!\n $COL_RESET"
