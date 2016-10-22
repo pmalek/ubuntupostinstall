@@ -82,15 +82,15 @@ echo -e "$COL_YELLOW" && read -p "Are you sure to install vundle to manage your 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo -e "\n $COL_YELLOW Installing Vundle.vim ...\n $COL_RESET"
-  git clone --depth 1 https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  git clone --depth 1 https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
   cp $DIR/.vimrc ~
   cp $DIR/.tmux.conf ~
   cp $DIR/.tmuxline.conf ~
-  sed -i 's/colorscheme solarized/"\ &/g' ~/.vimrc
+  sed -i 's/colorscheme solarized/"\ &/g' $HOME/.vimrc
   vim +PluginInstall +qall!
-  sed -i 's/"\ \(colorscheme solarized\)/\1/g' ~/.vimrc
+  sed -i 's/"\ \(colorscheme solarized\)/\1/g' $HOME/.vimrc
   vim +PluginInstall +qall!
-  ln -s ~/.vim/bundle/xmledit/ftplugin/xml.vim ~/.vim/bundle/xmledit/ftplugin/html.vim
+  ln -s $HOME/.vim/bundle/xmledit/ftplugin/xml.vim $HOME/.vim/bundle/xmledit/ftplugin/html.vim
 fi
 ############################ END OF VUNDLE
 ####################################################################
@@ -144,7 +144,7 @@ EOF
 echo "setopt magic_equal_subst" >> ~/.zshrc
 # prevent Ctrl-S from stopping the terminal
 echo "stty -ixon" >> ~/.zshrc
-# help neovim produce beutiful colors
+# help neovim produce beautiful colors
 echo "export TERM=xterm" >> ~/.zshrc
 ################         END OF OH-MY-ZSH
 ####################################################################
@@ -215,11 +215,11 @@ sudo rm -rf /usr/share/applications/ubuntu-amazon-default.desktop 2>/dev/null
 gsettings set com.canonical.desktop.interface scrollbar-mode normal
 
 # disable guest login
-[[ -s " /etc/lightdm/lightdm.conf.d/50-unity-greeter.conf" ]] && \
+[[ -s /etc/lightdm/lightdm.conf.d/50-unity-greeter.conf ]] && \
   echo allow-guest=false | sudo tee -a /etc/lightdm/lightdm.conf.d/50-unity-greeter.conf
 
 # disable crash reports
-[[ -s "/etc/default/apport" ]] && sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
+[[ -s /etc/default/apport ]] && sudo sed -i 's/enabled=1/enabled=0/' /etc/default/apport
 
 # check updates each 2 weeks
 dconf write /com/ubuntu/update-notifier/regular-auto-launch-interval 14
@@ -230,16 +230,15 @@ dconf write /com/ubuntu/update-notifier/regular-auto-launch-interval 14
 #gsettings set com.canonical.unity-greeter draw-grid false
 
 
-
 ################################################################
 echo -e "\n $COL_YELLOW Installing gvm and go...\n $COL_RESET"
 sudo apt-get install bison -y
 bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer) && \
-  source /home/monkey/.gvm/scripts/gvm && \
+  source $HOME/.gvm/scripts/gvm && \
   gvm install go1.4 && gvm use go1.4 && export GOROOT_BOOTSTRAP=$GOROOT && \
   gvm install go1.6.2 && gvm use go1.6.2 && gvm uninstall go1.4
 cat << EOF >> ~/.zshrc
-[[ -s "/home/monkey/.gvm/scripts/gvm" ]] && source "/home/monkey/.gvm/scripts/gvm"
+[[ -s ~/.gvm/scripts/gvm ]] && source ~/.gvm/scripts/gvm
 gvm use go1.6.2 >/dev/null
 EOF
 ################################################################
@@ -253,7 +252,7 @@ cd /tmp && git clone --depth 1 https://github.com/ggreer/the_silver_searcher.git
 
 ################################################################
 echo -e "\n $COL_YELLOW Copying .gdbinit to your home dir...\n $COL_RESET"
-cp .gdbinit ~
+cp ${DIR}/.gdbinit ~
 ################################################################
 
 cd $current_dir
