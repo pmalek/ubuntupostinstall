@@ -6,9 +6,14 @@
 [alias]
   lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   lgl = log --date-order --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
-  log-between = "!f() { git lgl `git merge-base $2 $1`..$2 -- $3 ; }; f"
+  log-between = "!f() { git lgl $4 `git merge-base $2 $1`..$2 -- $3 ; }; f"
+  log-between-author = "!f() { git lgl --author $1 `git merge-base $3 $2`..$3 -- $4; }; f"
+  log-between-stat-author = "!f() { git lgl --stat --author $1 `git merge-base $3 $2`..$3 -- $4; }; f"
   log-between-p = "!g() { git lgl -p $(git merge-base $2 $1)..$2 -- $3 ; }; g"
+  log-between-stat = "!f() { git lgl --stat `git merge-base $2 $1`..$2 -- $3 ; }; f"
+  log-between-changed-files = "!f() { git log --name-only --pretty='format:' `git merge-base $2 $1`..$2 -- $3 | sort | uniq; }; f"
   diff-between = "!h() { git diff $(git merge-base $2 $1) $2 -- ${GIT_PREFIX:-./}$3 ; }; h"
+  diff-between-stat = "!h() { git diff --stat $(git merge-base $2 $1) $2 -- ${GIT_PREFIX:-./}$3 ; }; h"
   wdiff = diff --color-words
   cdiff = diff --color-words=.
   co = checkout
