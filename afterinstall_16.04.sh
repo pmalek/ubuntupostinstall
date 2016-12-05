@@ -160,6 +160,15 @@ echo "setopt magic_equal_subst" >> ~/.zshrc
 echo "stty -ixon" >> ~/.zshrc
 # help neovim produce beautiful colors
 echo "export TERM=xterm" >> ~/.zshrc
+
+
+cat << EOF >> ~/.zshrc
+bindkey -r "^[p"
+bindkey -r "^[n"
+bindkey -r "^[l"
+bindkey -r "^[h"
+EOF
+
 ################         END OF OH-MY-ZSH
 ####################################################################
 
