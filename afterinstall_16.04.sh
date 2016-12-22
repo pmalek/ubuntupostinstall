@@ -71,7 +71,7 @@ sudo add-apt-repository ppa:indicator-multiload/stable-daily -y
 sudo apt update
 
 # install necessary
-sudo apt install neovim software-properties-common git zsh indicator-multiload vlc ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra libappindicator1 python-pip python3-pip htop deluge colormake xsel synaptic openssh-client shutter curl cmake $toinstall -V -y
+sudo apt install neovim software-properties-common git zsh indicator-multiload vlc ubuntu-restricted-extras tmux compizconfig-settings-manager compiz-plugins-extra libappindicator1 python-pip python3-pip htop deluge colormake xsel synaptic openssh-client urlview shutter curl cmake $toinstall -V -y
 dpkg -l | grep unity-lens | grep -v unity-lens-files | grep -v unity-lens-applications | awk '{print $2}' | xargs --no-run-if-empty sudo apt-get purge -y
 sudo apt upgrade -y
 sudo apt-get dist-upgrade -y
