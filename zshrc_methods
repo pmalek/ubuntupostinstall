@@ -26,3 +26,37 @@ lines_sort(){
   echo $mylines
 }
 
+watchmaincpp(){
+  local std
+  local cmd
+  if [ -z "$1" ]                           # Is parameter #1 zero length?
+  then
+    std="14"
+  else
+    std="$1"
+  fi
+  cmd="g++ -Wall -Wextra -Wsuggest-override -std=c++$std main.cpp"
+
+  echo "Using c++$std"
+  echo "Compile command: $cmd"
+
+  ls *.cpp | entr -c -p zsh -c "$cmd" # /_
+}
+
+watchmaincppandrun(){
+  local std
+  local cmd
+  if [ -z "$1" ]                           # Is parameter #1 zero length?
+  then
+    std="14"
+  else
+    std="$1"
+  fi
+  cmd="g++ -Wall -Wextra -Wsuggest-override -std=c++$std main.cpp && ./a.out"
+
+  echo "Using c++$std"
+  echo "Compile command: $cmd"
+
+  ls *.cpp | entr -c -p zsh -c "$cmd" # /_
+}
+
